@@ -8,62 +8,70 @@ import MatteFinish from "../../Assets/images/Matte Finish.png";
 import GlossyFinish from "../../Assets/images/Glossy Finish.png";
 import LusterFinish from "../../Assets/images/Luster Finish.png";
 import Recommended from "../../Assets/images/Recomended.png";
+import Product1 from "../../Assets/images/product1.png";
+import Product2 from "../../Assets/images/product2.png";
+import Product3 from "../../Assets/images/product3.png";
+import Product4 from "../../Assets/images/product4.png";
+import RemoveIcon from "../../Assets/icons/remove.svg";
+import AddIcon from "../../Assets/icons/add.svg";
 
 const ProductDetails = () => {
   return (
-    <div className="flex justify-between">
-      <div className="w-[360px] mr-11 mt-5">
-        <div className="w-3/4 ml-auto">
+    <div className="lg:flex justify-between">
+      <div className="lg:w-[360px] lg:mr-11 mt-5">
+        <div className="w-11/12 lg:w-3/4 mx-auto lg:mx-0 lg:ml-auto">
           <div className="flex justify-center">
             <img src={Logo} alt="" />
           </div>
-          <h1 className="mt-5 text-4xl font-semibold text-black text-center">
+          <h1 className="mt-5 text-3xl lg:text-4xl font-semibold text-black text-center">
             Print Approval Form
           </h1>
           <p className="mt-6 text-base text-black text-center leading-5">
             Please only fill out this form if you don't require any more
             revisions.
           </p>
-          <div className="flex flex-col items-center justify-end mt-20">
-            <div className="flex flex-col items-end">
-              <div className="flex items-end">
-                <p className="font-medium text-center flex justify-end mr-1 w-36">
+          <div className="flex lg:flex-col lg:items-center justify-center lg:justify-end mt-20">
+            <div className="flex lg:flex-col items-center lg:items-end">
+              <div className="flex flex-col-reverse lg:flex-row items-end">
+                <p className="absolute lg:static font-medium text-center flex justify-end text-xs lg:text-base mt-2 lg:mt-0 lg:mr-1 lg:w-36">
                   Delivery
                   <br /> Address
                 </p>
-                <div className="bg-checked-step bg-contain bg-no-repeat w-10 h-20">
+                <div className="relative bottom-10 lg:static bg-checked-step bg-contain bg-no-repeat w-10 h-20">
                   <img className="mt-1 ml-1.5" src={ActiveStep1} alt="" />
                 </div>
               </div>
-              <div className="w-[2px] h-20 bg-[#FF9728] mr-[19px]"></div>
+              <div className="relative bottom-4 lg:static mt-4 lg:mt-0 -ml-3 md:ml-0 w-28 lg:w-[2px] h-[2px] lg:h-20 bg-[#FF9728] lg:mr-[19px]"></div>
             </div>
-            <div className="flex flex-col items-end">
-              <div className="flex items-end">
-                <p className="font-medium text-center flex justify-end mr-1 w-36">
+            <div className="-ml-4 lg:ml-0 flex lg:flex-col items-center lg:items-end">
+              <div className="flex flex-col-reverse lg:flex-row items-end">
+                <p className="absolute lg:static font-medium text-center flex justify-end text-xs lg:text-base mt-2 lg:mt-0 lg:mr-1 lg:w-36">
                   Product
                   <br /> Details
                 </p>
-                <div className="bg-checked-step bg-contain bg-no-repeat w-10 h-20">
+                <div className="relative bottom-10 lg:static bg-checked-step bg-contain bg-no-repeat w-10 h-20">
                   <img className="mt-1 ml-1.5" src={ActiveStep2} alt="" />
                 </div>
               </div>
-              <div className="w-[2px] h-20 bg-[#FF9728] mr-[19px]"></div>
+              <div className="relative bottom-4 lg:static mt-4 lg:mt-0 -ml-3 md:ml-0 w-28 lg:w-[2px] h-[2px] lg:h-20 bg-[#FF9728] lg:mr-[19px]"></div>
             </div>
-            <div className="flex items-end">
-              <p className="font-medium text-center flex justify-end mr-1 w-36">
-                Order Summery &
-                <br /> Payment
-              </p>
-              <div className="bg-unchecked-step bg-contain bg-no-repeat w-10 h-20">
-                <img className="mt-2 ml-1.5" src={NonActiveStep3} alt="" />
+            <div className="-ml-4 lg:ml-0 flex lg:flex-col items-center lg:items-end">
+              <div className="flex flex-col-reverse lg:flex-row items-end">
+                <p className="absolute lg:static font-medium text-center flex justify-end text-xs lg:text-base mt-2 lg:mt-0 lg:mr-1 lg:w-36">
+                  Order Summery &
+                  <br /> Payment
+                </p>
+                <div className="relative bottom-10 lg:static bg-unchecked-step bg-contain bg-no-repeat w-10 h-20">
+                  <img className="mt-2 ml-1.5" src={NonActiveStep3} alt="" />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="w-[calc(100%-360px)] bg-[#FBF4E3]">
-        <div className="w-4/5 mx-auto mb-10">
-          <h1 className="mt-32 mb-12 text-4xl font-semibold text-black text-center">
+      <div className="lg:w-[calc(100%-360px)] lg:bg-[#FBF4E3]">
+        <div className="w-11/12 lg:w-4/5 mx-auto mb-10">
+          <h1 className="mt-8 lg:mt-32 mb-6 lg:mb-12 text-3xl lg:text-4xl font-semibold text-black text-center">
             2. Product Details
           </h1>
           <div>
@@ -79,7 +87,7 @@ const ProductDetails = () => {
                   </p>
                 </label>
                 <img
-                  className="border-2 border-[#767676] rounded-xl"
+                  className="border-2 border-[#767676] rounded-xl overflow-hidden"
                   src={MatteFinish}
                   alt=""
                 />
@@ -92,7 +100,7 @@ const ProductDetails = () => {
                   </p>
                 </label>
                 <img
-                  className="border-2 border-[#767676] rounded-xl"
+                  className="border-2 border-[#767676] rounded-xl overflow-hidden"
                   src={GlossyFinish}
                   alt=""
                 />
@@ -105,7 +113,7 @@ const ProductDetails = () => {
                   </p>
                 </label>
                 <img
-                  className="border-2 border-[#767676] rounded-xl"
+                  className="border-2 border-[#767676] rounded-xl overflow-hidden"
                   src={LusterFinish}
                   alt=""
                 />
@@ -139,15 +147,311 @@ const ProductDetails = () => {
             </div>
           </div>
           <div>
-            <div className="flex justify-between mt-8 mb-12">
+            <div className="lg:flex justify-between mt-8 mb-12">
               <p className="text-xl font-bold whitespace-nowrap">
                 Would you like to add more prints?
               </p>
-              <p className="text-base text-[#6B6E76] ml-6">
+              <p className="text-base text-[#6B6E76] lg:ml-6">
                 Select exactly how many you would like for each photo.
               </p>
             </div>
-            <div></div>
+            <div className="grid grid-cols-6">
+              <div className="bg-[#FFEBDD] rounded-l-xl">
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="h-20 flex ml-2 items-center"></div>
+                </div>
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="h-20 flex ml-2 items-center rounded-lg overflow-hidden">
+                    <img className="" src={Product1} alt="" />
+                  </div>
+                </div>
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="h-20 flex ml-2 items-center rounded-lg overflow-hidden">
+                    <img className="" src={Product2} alt="" />
+                  </div>
+                </div>
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="h-20 flex ml-2 items-center rounded-lg overflow-hidden">
+                    <img className="" src={Product3} alt="" />
+                  </div>
+                </div>
+                <div className="">
+                  <div className="h-20 flex ml-2 items-center rounded-lg overflow-hidden">
+                    <img className="" src={Product4} alt="" />
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white">
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex flex-col justify-center pl-3 pr-4 h-20 pb-2">
+                    <h1 className="text-[#323640] text-lg font-semibold">
+                      4x6 Print
+                    </h1>
+                    <p className="text-[#6B6E76] text-sm">$10 per photo</p>
+                  </div>
+                </div>
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div className="">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[#EFEFEF] opacity-50">
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex flex-col justify-center pl-3 pr-4 h-20 pb-2">
+                    <h1 className="text-[#323640] text-lg font-semibold">
+                      5x7 Print
+                    </h1>
+                    <p className="text-[#6B6E76] text-sm">$15 per photo</p>
+                  </div>
+                </div>
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div className="">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white">
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex flex-col justify-center pl-3 pr-4 h-20 pb-2">
+                    <h1 className="text-[#323640] text-lg font-semibold">
+                      8x10 Print
+                    </h1>
+                    <p className="text-[#6B6E76] text-sm">$25 per photo</p>
+                  </div>
+                </div>
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">1</h1>
+                    <div className="w-7 h-7 bg-[#FF9728] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div className="">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[#EFEFEF] opacity-50">
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex flex-col justify-center pl-3 pr-4 h-20 pb-2">
+                    <h1 className="text-[#323640] text-lg font-semibold">
+                      11x14 Print
+                    </h1>
+                    <p className="text-[#6B6E76] text-sm">$34 per photo</p>
+                  </div>
+                </div>
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div className="">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">1</h1>
+                    <div className="w-7 h-7 bg-[#FF9728] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white rounded-r-xl">
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex flex-col justify-center pl-3 pr-4 h-20 pb-2">
+                    <h1 className="text-[#323640] text-lg font-semibold">
+                      16x20 Print
+                    </h1>
+                    <p className="text-[#6B6E76] text-sm">$49 per photo</p>
+                  </div>
+                </div>
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div className="border-b-2 border-[#C0BDB7]">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div className="">
+                  <div className="flex items-center justify-between pl-2 pr-4 h-20">
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={RemoveIcon} alt="" />
+                    </div>
+                    <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
+                    <div className="w-7 h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
+                      <img src={AddIcon} alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div>
             <p className="mt-20 text-xl font-bold">
@@ -172,9 +476,9 @@ const ProductDetails = () => {
             <p className="mt-10 text-xl font-bold">
               Do you require express shipping?
             </p>
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid lg:grid-cols-3 gap-6">
               <div className="mt-4 bg-white rounded-xl py-2 border-2 border-[#767676]">
-                <label className="flex items-start text-base font-medium cursor-pointer px-1 py-2 min-h-[80px]">
+                <label className="flex items-start text-base font-medium cursor-pointer px-1 pb-2 lg:min-h-[80px]">
                   <input type="radio" className="cursor-pointer mt-2 ml-1" />
                   <span className="ml-2">
                     No thanks, I can wait 5-8 days for my prints to arrive
@@ -186,7 +490,7 @@ const ProductDetails = () => {
                 </p>
               </div>
               <div className="mt-4 bg-white rounded-xl py-2 border-2 border-[#767676]">
-                <label className="flex items-start text-base font-medium cursor-pointer px-1 py-2 min-h-[80px]">
+                <label className="flex items-start text-base font-medium cursor-pointer px-1 pb-2 lg:min-h-[80px]">
                   <input type="radio" className="cursor-pointer mt-2 ml-1" />
                   <span className="ml-2">
                     Yes please, I need my prints to arrive within 3 days. Use
@@ -199,7 +503,7 @@ const ProductDetails = () => {
                 </p>
               </div>
               <div className="mt-4 bg-white rounded-xl py-2 border-2 border-[#767676]">
-                <label className="flex items-start text-base font-medium cursor-pointer px-1 py-2 min-h-[80px]">
+                <label className="flex items-start text-base font-medium cursor-pointer px-1 pb-2 lg:min-h-[80px]">
                   <input type="radio" className="cursor-pointer mt-2 ml-1" />
                   <span className="ml-2">
                     I need my prints to arrive within 24 hours guaranteed.
