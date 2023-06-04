@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../Assets/icons/logo.svg";
+import Logo from "../../Assets/images/logo.png";
 import ActiveStep1 from "../../Assets/icons/active-step-1.svg";
 import NonActiveStep2 from "../../Assets/icons/nonactive-step-2.svg";
 import NonActiveStep3 from "../../Assets/icons/nonactive-step-3.svg";
