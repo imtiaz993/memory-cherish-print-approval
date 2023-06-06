@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Logo from "../../Assets/images/logo.png";
 import CheckIcon from "../../Assets/icons/black-check.svg";
 import ActiveStep1 from "../../Assets/icons/active-step-1.svg";
@@ -16,10 +17,11 @@ import RemoveIcon from "../../Assets/icons/remove.svg";
 import AddIcon from "../../Assets/icons/add.svg";
 
 const ProductDetails = () => {
+  const navigate = useNavigate();
   const [time, setTime] = useState("");
   return (
     <div className="lg:flex justify-between">
-      <div className="lg:w-[360px] lg:mr-11 mt-5">
+      <div className="lg:w-[360px] lg:mr-11 mt-5 mb-10">
         <div className="w-11/12 lg:w-3/4 mx-auto lg:mx-0 lg:ml-auto">
           <div className="flex justify-center">
             <img src={Logo} alt="" />
@@ -188,13 +190,19 @@ const ProductDetails = () => {
                     <h1 className="text-[#323640] text-xs md:text-lg font-semibold">
                       4x6 Print
                     </h1>
-                    <p className="text-[#6B6E76] text-[10px] md:text-sm mt-1 md:mt-0">$10 per photo</p>
+                    <p className="text-[#6B6E76] text-[10px] md:text-sm mt-1 md:mt-0">
+                      $10 per photo
+                    </p>
                   </div>
                 </div>
                 <div className="border-l sm:border-l-0 border-t sm:border-t-0 sm:border-b-2 border-[#767676]  sm:border-[#C0BDB7]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
@@ -205,7 +213,11 @@ const ProductDetails = () => {
                 <div className="border-l sm:border-l-0 border-t sm:border-t-0 sm:border-b-2 border-[#767676]  sm:border-[#C0BDB7]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
@@ -216,7 +228,11 @@ const ProductDetails = () => {
                 <div className="border-l sm:border-l-0 border-t sm:border-t-0 sm:border-b-2 border-[#767676]  sm:border-[#C0BDB7]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
@@ -227,7 +243,11 @@ const ProductDetails = () => {
                 <div className="border-l sm:border-l-0 border-y sm:border-y-0 border-[#767676]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
@@ -242,13 +262,19 @@ const ProductDetails = () => {
                     <h1 className="text-[#323640] text-xs md:text-lg font-semibold">
                       5x7 Print
                     </h1>
-                    <p className="text-[#6B6E76] text-[10px] md:text-sm mt-1 md:mt-0">$15 per photo</p>
+                    <p className="text-[#6B6E76] text-[10px] md:text-sm mt-1 md:mt-0">
+                      $15 per photo
+                    </p>
                   </div>
                 </div>
                 <div className="border-l sm:border-l-0 border-t sm:border-t-0 sm:border-b-2 border-[#767676]  sm:border-[#C0BDB7]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
@@ -259,7 +285,11 @@ const ProductDetails = () => {
                 <div className="border-l sm:border-l-0 border-t sm:border-t-0 sm:border-b-2 border-[#767676]  sm:border-[#C0BDB7]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
@@ -270,7 +300,11 @@ const ProductDetails = () => {
                 <div className="border-l sm:border-l-0 border-t sm:border-t-0 sm:border-b-2 border-[#767676]  sm:border-[#C0BDB7]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
@@ -281,7 +315,11 @@ const ProductDetails = () => {
                 <div className="border-l sm:border-l-0 border-y sm:border-y-0 border-[#767676]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
@@ -296,13 +334,19 @@ const ProductDetails = () => {
                     <h1 className="text-[#323640] text-xs md:text-lg font-semibold">
                       8x10 Print
                     </h1>
-                    <p className="text-[#6B6E76] text-[10px] md:text-sm mt-1 md:mt-0">$25 per photo</p>
+                    <p className="text-[#6B6E76] text-[10px] md:text-sm mt-1 md:mt-0">
+                      $25 per photo
+                    </p>
                   </div>
                 </div>
                 <div className="border-l sm:border-l-0 border-t sm:border-t-0 sm:border-b-2 border-[#767676]  sm:border-[#C0BDB7]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
@@ -313,7 +357,11 @@ const ProductDetails = () => {
                 <div className="border-l sm:border-l-0 border-t sm:border-t-0 sm:border-b-2 border-[#767676]  sm:border-[#C0BDB7]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">1</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#FF9728] cursor-pointer rounded flex justify-center items-center">
@@ -324,7 +372,11 @@ const ProductDetails = () => {
                 <div className="border-l sm:border-l-0 border-t sm:border-t-0 sm:border-b-2 border-[#767676]  sm:border-[#C0BDB7]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
@@ -335,7 +387,11 @@ const ProductDetails = () => {
                 <div className="border-l sm:border-l-0 border-y sm:border-y-0 border-[#767676]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
@@ -350,13 +406,19 @@ const ProductDetails = () => {
                     <h1 className="text-[#323640] text-xs md:text-lg font-semibold">
                       11x14 Print
                     </h1>
-                    <p className="text-[#6B6E76] text-[10px] md:text-sm mt-1 md:mt-0">$34 per photo</p>
+                    <p className="text-[#6B6E76] text-[10px] md:text-sm mt-1 md:mt-0">
+                      $34 per photo
+                    </p>
                   </div>
                 </div>
                 <div className="border-l sm:border-l-0 border-t sm:border-t-0 sm:border-b-2 border-[#767676]  sm:border-[#C0BDB7]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
@@ -367,7 +429,11 @@ const ProductDetails = () => {
                 <div className="border-l sm:border-l-0 border-t sm:border-t-0 sm:border-b-2 border-[#767676]  sm:border-[#C0BDB7]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
@@ -378,7 +444,11 @@ const ProductDetails = () => {
                 <div className="border-l sm:border-l-0 border-t sm:border-t-0 sm:border-b-2 border-[#767676]  sm:border-[#C0BDB7]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
@@ -389,7 +459,11 @@ const ProductDetails = () => {
                 <div className="border-l sm:border-l-0 border-y sm:border-y-0 border-[#767676]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">1</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#FF9728] cursor-pointer rounded flex justify-center items-center">
@@ -404,13 +478,19 @@ const ProductDetails = () => {
                     <h1 className="text-[#323640] text-xs md:text-lg font-semibold">
                       16x20 Print
                     </h1>
-                    <p className="text-[#6B6E76] text-[10px] md:text-sm mt-1 md:mt-0">$49 per photo</p>
+                    <p className="text-[#6B6E76] text-[10px] md:text-sm mt-1 md:mt-0">
+                      $49 per photo
+                    </p>
                   </div>
                 </div>
                 <div className="border-x sm:border-x-0 border-t sm:border-t-0 sm:border-b-2 border-[#767676]  sm:border-[#C0BDB7]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
@@ -421,7 +501,11 @@ const ProductDetails = () => {
                 <div className="border-x sm:border-x-0 border-t sm:border-t-0 sm:border-b-2 border-[#767676]  sm:border-[#C0BDB7]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
@@ -432,7 +516,11 @@ const ProductDetails = () => {
                 <div className="border-x sm:border-x-0 border-t sm:border-t-0 sm:border-b-2 border-[#767676]  sm:border-[#C0BDB7]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
@@ -443,7 +531,11 @@ const ProductDetails = () => {
                 <div className="border-x sm:border-x-0 border-y sm:border-y-0 border-[#767676]">
                   <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
-                      <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
+                      <img
+                        className="w-3/5 sm:w-auto "
+                        src={RemoveIcon}
+                        alt=""
+                      />
                     </div>
                     <h1 className="text-[#6B6E76] text-lg font-semibold">0</h1>
                     <div className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center">
@@ -572,7 +664,12 @@ const ProductDetails = () => {
             </div>
           )}
           <div className="flex justify-end mt-10">
-            <button className="bg-[#FF9728] rounded-xl text-xl text-white font-semibold py-3 px-6">
+            <button
+              onClick={() => {
+                navigate("/framed-prints");
+              }}
+              className="bg-[#FF9728] rounded-xl text-xl text-white font-semibold py-2 lg:py-3 px-6"
+            >
               Next
             </button>
           </div>

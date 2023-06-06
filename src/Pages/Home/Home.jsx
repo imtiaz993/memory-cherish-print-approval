@@ -1,13 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Logo from "../../Assets/images/logo.png";
 import ActiveStep1 from "../../Assets/icons/active-step-1.svg";
 import NonActiveStep2 from "../../Assets/icons/nonactive-step-2.svg";
 import NonActiveStep3 from "../../Assets/icons/nonactive-step-3.svg";
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <div className="lg:flex justify-between">
-      <div className="lg:w-[360px] lg:mr-11 mt-5">
+      <div className="lg:w-[360px] lg:mr-11 mt-5 lg:mb-10">
         <div className="w-11/12 lg:w-3/4 mx-auto lg:mx-0 lg:ml-auto">
           <div className="flex justify-center">
             <img src={Logo} alt="" />
@@ -138,7 +140,12 @@ const Home = () => {
               </div>
             </div>
             <div className="flex justify-center mt-10">
-              <button className="bg-[#FF9728] rounded-xl text-xl text-white font-semibold py-3 px-6">
+              <button
+                onClick={() => {
+                  navigate("/product");
+                }}
+                className="bg-[#FF9728] rounded-xl text-xl text-white font-semibold py-2 lg:py-3 px-6"
+              >
                 Select My Order Details
               </button>
             </div>
