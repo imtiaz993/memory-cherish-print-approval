@@ -176,7 +176,7 @@ const Order = () => {
                       </p>
                     </div>
 
-                    <div className="flex items-center justify-center md:pr-10 mt-2">
+                    <div className="flex items-center justify-center md:pr-10">
                       <div className="w-5 h-5 bg-[#09BAA6] cursor-pointer rounded flex justify-center items-center">
                         <img
                           className="w-3/5 sm:w-auto "
@@ -194,7 +194,7 @@ const Order = () => {
                       </div>
                     </div>
                     <div className="flex items-center justify-end">
-                      <p className="text-center text-xs md:text-base text-[#6B6E76] mt-2">
+                      <p className="text-center text-xs md:text-base text-[#6B6E76]">
                         $25.99
                       </p>
                       <div className="ml-4 md:ml-8 bg-[#FF9728] cursor-pointer w-5 h-5 rounded-full flex justify-center items-center">
