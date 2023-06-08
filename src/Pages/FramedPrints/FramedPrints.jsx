@@ -111,7 +111,10 @@ const FramedPrints = () => {
                   onClick={() => {
                     setIsOpenAccordion({
                       id: "1",
-                      status: !isOpenAccordion.status,
+                      status:
+                        isOpenAccordion.id === "1"
+                          ? !isOpenAccordion.status
+                          : true,
                     });
                   }}
                 />
@@ -262,7 +265,10 @@ const FramedPrints = () => {
                   onClick={() => {
                     setIsOpenAccordion({
                       id: "2",
-                      status: !isOpenAccordion.status,
+                      status:
+                        isOpenAccordion.id === "2"
+                          ? !isOpenAccordion.status
+                          : true,
                     });
                   }}
                 />
@@ -408,7 +414,6 @@ const FramedPrints = () => {
                   alt=""
                 />
               </div>
-           
             </div>
             <div className="mt-4 rounded-xl lg:rounded-2xl shadow-mobile-card bg-white py-1.5 lg:py-2 px-2 lg:px-3 overflow-hidden">
               <div className="flex justify-between items-center">
@@ -439,7 +444,6 @@ const FramedPrints = () => {
                   alt=""
                 />
               </div>
-             
             </div>
           </div>
           <div className="flex justify-end mt-10">
