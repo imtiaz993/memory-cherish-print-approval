@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../Pages/Home/Home";
 import ProductDetails from "../Pages/Product/ProductDetails";
 import FramedPrints from "../Pages/FramedPrints/FramedPrints";
+import Order from "../Pages/Order/Order";
 
 const WebRoutes = () => {
   return (
@@ -11,6 +12,7 @@ const WebRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<ProductDetails />} />
         <Route path="/framed-prints" element={<FramedPrints />} />
+        <Route path="/order" element={<Order />} />
       </Routes>
     </BrowserRouter>
   );

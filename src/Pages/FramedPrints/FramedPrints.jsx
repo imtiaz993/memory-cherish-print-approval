@@ -445,7 +445,7 @@ const FramedPrints = () => {
           <div className="flex justify-end mt-10">
             <button
               onClick={() => {
-                navigate("/framed-prints");
+                navigate("/orders");
               }}
               className="bg-[#FF9728] rounded-xl text-xl text-white font-semibold py-2 lg:py-3 px-6"
             >
