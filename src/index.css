@@ -11,13 +11,14 @@
 @tailwind utilities;
 
 input[type="radio"] {
+  cursor: pointer;
   border: 1px solid #767676;
   width: 20px;
   height: 20px;
   /* accent-color: #FF9728; */
 }
 
-.ReactFlagsSelect-module_selectBtn__19wW7 {
+.home-phone .ReactFlagsSelect-module_selectBtn__19wW7 {
   background-color: white !important;
   border-radius: 12px 0px 0px 12px !important;
   border: none !important;
@@ -30,8 +31,23 @@ input[type="radio"] {
   z-index: 20;
   margin-top: 6px !important;
 }
-.ReactFlagsSelect-module_selectOptions__3LNBJ {
+.home-phone .ReactFlagsSelect-module_selectOptions__3LNBJ {
   border: 1px solid #09c5b0 !important;
   border-radius: 5px !important;
   top: 48px;
+}
+
+
+.order-country .ReactFlagsSelect-module_selectBtn__19wW7 {
+  background-color: white !important;
+  border-radius: 16px !important;
+  border: none !important;
+  border: 1px solid black !important;
+  padding: 6px 20px !important;
+  outline: none !important;
+}
+.order-country .ReactFlagsSelect-module_selectOptions__3LNBJ {
+  border: 1px solid #09c5b0 !important;
+  border-radius: 5px !important;
+  top: 40px;
 }

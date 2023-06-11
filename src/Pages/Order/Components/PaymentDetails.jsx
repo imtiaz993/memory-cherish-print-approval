@@ -7,10 +7,34 @@ import VisaIcon from "../../../Assets/icons/visa.png";
 import MasterCardIcon from "../../../Assets/icons/mastercard.png";
 import CardsIcon from "../../../Assets/icons/cards.png";
 import CVVIcon from "../../../Assets/icons/cvv.png";
+import Order from "../Order";
+import Country from "./Country";
 
-const PaymentDetails = () => {
+const PaymentDetails = ({ order, setOrder }) => {
   const [payWith, setPayWith] = useState("card");
-  const [isNewCard, setIsNewCard] = useState(true);
+  const [isNewCard, setIsNewCard] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({
+    number: "",
+    expiry: "",
+    cvv: "",
+    cardIcon: null,
+  });
+
+  const cards = [
+    {
+      number: "**** **** **** 7464",
+      expiry: "12/26",
+      cvv: "",
+      cardIcon: VisaIcon,
+    },
+    {
+      number: "**** **** **** 5863",
+      expiry: "12/25",
+      cvv: "",
+      cardIcon: MasterCardIcon,
+    },
+  ];
+
   return (
     <div className="mt-4 rounded-xl lg:rounded-2xl shadow-mobile-card bg-white py-1.5 lg:py-2 px-2 lg:px-3">
       <h1 className="text-xl lg:text-3xl font-semibold px-6 py-4">
@@ -37,18 +61,18 @@ const PaymentDetails = () => {
               <input
                 className="w-full rounded-2xl border border-black py-2 px-5 outline-none"
                 placeholder="Jonah Rathmer"
-                type=""
+                type="text"
+                onChange={(e) => {
+                  setOrder({ ...order, fullname: e.target.value });
+                }}
+                value={order.fullname}
               />
             </div>
-            <div className="mt-4 lg:mt-6">
+            <div className="mt-4 lg:mt-6 order-country">
               <p className="text-base lg:text-xl font-semibold text-black mb-2">
                 Country
               </p>
-              <input
-                className="w-full rounded-2xl border border-black py-2 px-5 outline-none"
-                placeholder="United States"
-                type=""
-              />
+              <Country order={order} setOrder={setOrder} />
             </div>
             <div className="mt-4 lg:mt-6">
               <p className="text-base lg:text-xl font-semibold text-black mb-2">
@@ -57,7 +81,11 @@ const PaymentDetails = () => {
               <input
                 className="w-full rounded-2xl border border-black py-2 px-5 outline-none"
                 placeholder="1964 Quiet Valley Lane"
-                type=""
+                type="text"
+                onChange={(e) => {
+                  setOrder({ ...order, address: e.target.value });
+                }}
+                value={order.address}
               />
             </div>
             <div className="mt-4 lg:mt-6">
@@ -98,53 +126,42 @@ const PaymentDetails = () => {
                   <p className="text-base lg:text-xl font-semibold text-black mb-2">
                     Your Cards
                   </p>
-                  <label>
-                    <div className="flex justify-between bg-[#F5F5F5] rounded-xl py-3 px-4 mb-3 cursor-pointer">
-                      <div className="flex items-center">
-                        <input type="radio" />
-                        <img
-                          className="ml-2 md:ml-6 w-8 md:w-auto"
-                          src={VisaIcon}
-                          alt=""
-                        />
-                        <p className="font-medium text-base lg:text-2xl ml-2 md:ml-8">
-                          {" "}
-                          **** **** **** 7464
-                        </p>
+                  {cards.map((item) => (
+                    <label>
+                      <div className="flex justify-between bg-[#F5F5F5] rounded-xl py-3 px-4 mb-3 cursor-pointer">
+                        <div className="flex items-center">
+                          <input
+                            onClick={() => {
+                              setSelectedCard(item);
+                              setIsNewCard(false)
+                            }}
+                            checked={item.number === selectedCard.number}
+                            type="radio"
+                          />
+                          <img
+                            className="ml-2 md:ml-6 w-8 md:w-auto"
+                            src={item.cardIcon}
+                            alt=""
+                          />
+                          <p className="font-medium text-base lg:text-2xl ml-2 md:ml-8">
+                            {item.number}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-[#00000080] text-base lg:text-2xl">
+                            {item.expiry}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-[#00000080] text-base lg:text-2xl">
-                          12/26
-                        </p>
-                      </div>
-                    </div>
-                  </label>
-                  <label>
-                    <div className="flex justify-between bg-[#F5F5F5] rounded-xl py-3 px-4 mb-3 cursor-pointer">
-                      <div className="flex items-center">
-                        <input type="radio" />
-                        <img
-                          className="ml-2 md:ml-6 w-8 md:w-auto"
-                          src={MasterCardIcon}
-                          alt=""
-                        />
-                        <p className="font-medium text-base lg:text-2xl ml-2 md:ml-8">
-                          {" "}
-                          **** **** **** 5863
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-[#00000080] text-base lg:text-2xl">
-                          12/25
-                        </p>
-                      </div>
-                    </div>
-                  </label>
+                    </label>
+                  ))}
+
                   <label>
                     <div className="flex justify-between bg-[#F5F5F5] rounded-xl py-3 px-4 mb-3 cursor-pointer">
                       <div className="flex items-center">
                         <input
                           onClick={() => {
+                            setSelectedCard("");
                             setIsNewCard(!isNewCard);
                           }}
                           checked={isNewCard}
@@ -153,11 +170,6 @@ const PaymentDetails = () => {
 
                         <p className="font-medium text-base lg:text-xl ml-2 md:ml-8">
                           Enter New Card
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-[#00000080] text-base lg:text-2xl">
-                          12/25
                         </p>
                       </div>
                     </div>
@@ -176,7 +188,11 @@ const PaymentDetails = () => {
                         <input
                           className="w-full pr-2 md:pr-3 outline-none"
                           placeholder="1234 5678 5487 7544"
-                          type=""
+                          type="number"
+                          onChange={(e) => {
+                            setOrder({ ...order, card: e.target.value });
+                          }}
+                          value={order.card}
                         />
                         <img className="h-5 md:h-7" src={CardsIcon} alt="" />
                       </div>
@@ -189,7 +205,11 @@ const PaymentDetails = () => {
                         <input
                           className="w-full rounded-2xl border border-black py-2 md:py-3 px-3 md:px-5 outline-none"
                           placeholder="MM/YY"
-                          type=""
+                          type="text"
+                          onChange={(e) => {
+                            setOrder({ ...order, expiry: e.target.value });
+                          }}
+                          value={order.expiry}
                         />
                       </div>
                       <div className="mt-2 lg:mt-3">
@@ -200,7 +220,11 @@ const PaymentDetails = () => {
                           <input
                             className="w-full pr-2 md:pr-3 outline-none"
                             placeholder="CVV"
-                            type=""
+                            type="number"
+                            onChange={(e) => {
+                              setOrder({ ...order, cvv: e.target.value });
+                            }}
+                            value={order.cvv}
                           />
                           <img className="h-6" src={CVVIcon} alt="" />
                         </div>

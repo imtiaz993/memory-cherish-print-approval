@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Stepper from "../../Common/Stepper";
 import OrderSummary from "./Components/OrderSummary";
 import PaymentDetails from "./Components/PaymentDetails";
+import { updateOrder } from "../../redux/cartSlice";
 
 const Order = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.cart);
+  const [order, setOrder] = useState({});
+
   console.log(state)
+
+  const handleSubmit = (e) => {
+    dispatch(updateOrder(order))
+
+  };
+  
   return (
     <div className="lg:flex justify-between">
       <Stepper />
@@ -18,7 +27,7 @@ const Order = () => {
           </h1>
           <div>
             <OrderSummary />
-            <PaymentDetails />
+            <PaymentDetails order={order} setOrder={setOrder}/>
           </div>
         </div>
       </div>

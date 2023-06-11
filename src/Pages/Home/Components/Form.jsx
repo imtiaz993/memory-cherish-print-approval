@@ -80,7 +80,7 @@ const Form = () => {
           <div className="grid lg:grid-cols-2 gap-5 lg:gap-8 mb-5">
             <div>
               <p className="text-base text-black mb-2">Phone Number</p>
-              <div className="w-full relative">
+              <div className="w-full relative home-phone">
                 <PhoneNumber
                   deliveryDetails={deliveryDetails}
                   setDeliveryDetails={setDeliveryDetails}
