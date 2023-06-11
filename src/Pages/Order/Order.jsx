@@ -7,8 +7,8 @@ import { updateOrder } from "../../redux/cartSlice";
 
 const Order = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.cart);
-  const [order, setOrder] = useState({});
+  const state = useSelector((state) => state.value);
+  const [order, setOrder] = useState({...state.order});
 
   console.log(state)
 

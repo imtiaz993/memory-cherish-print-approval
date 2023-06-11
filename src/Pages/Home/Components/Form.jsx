@@ -1,23 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateCart } from "../../../redux/cartSlice";
 import PhoneNumber from "./PhoneNumber";
 
 const Form = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  const [deliveryDetails, setDeliveryDetails] = useState({
-    firstname: "",
-    lastname: "",
-    shippingAddress: "",
-    phoneCode: "+1",
-    phoneNumber: "",
-    state: "",
-    city: "",
-    zip: "",
-  });
-
+  const state = useSelector((state) => state.value);
+  const [deliveryDetails, setDeliveryDetails] = useState({...state.cart});
+console.log("TEST",deliveryDetails)
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateCart(deliveryDetails))
@@ -99,7 +91,7 @@ const Form = () => {
                 />
               </div>
             </div>
-            <div className="mt-12 md:mt-1">
+            <div className="mt-12 lg:mt-1">
               <p className="text-base text-black mb-2">State/Province</p>
               <input
                 className="w-full rounded-xl border border-[#767676] py-3 px-5 outline-none"

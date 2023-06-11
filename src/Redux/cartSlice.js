@@ -5,7 +5,7 @@ export const cartSlice = createSlice({
   initialState: { value: {
     cart:{},
     product:{},
-    framedPrints:{},
+    framedPrints:[],
     order:{}
   } },
   reducers: {

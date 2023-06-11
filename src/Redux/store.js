@@ -1,10 +1,17 @@
-import { configureStore } from '@reduxjs/toolkit';
 import cartSlice from './cartSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import storage from 'redux-persist/lib/storage';
+import { persistReducer, persistStore } from 'redux-persist';
 
-const store = configureStore({
-  reducer: {
-    cart: cartSlice,
-  },
-});
+const persistConfig = {
+  key: 'root',
+  storage,
+}
 
-export default store;
+const persistedReducer = persistReducer(persistConfig, cartSlice)
+
+export const  store = configureStore({
+  reducer: persistedReducer,
+})
+
+export const persistor = persistStore(store)

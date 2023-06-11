@@ -9,8 +9,8 @@ import { useState } from "react";
 const FramedPrints = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.cart);
-  const [framedPrints, setFramedPrints] = useState([]);
+  const state = useSelector((state) => state.value);
+  const [framedPrints, setFramedPrints] = useState([...state.framedPrints]);
 
   console.log(state)
 

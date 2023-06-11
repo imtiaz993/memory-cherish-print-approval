@@ -13,9 +13,9 @@ import Frames from "./Components/Frames";
 const ProductDetails = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.cart);
-  console.log(state)
-  const [productDetails, setProductDetails] = useState({});
+  const state = useSelector((state) => state.value);
+  console.log("TEST",state)
+  const [productDetails, setProductDetails] = useState({...state.product});
 
   const handleSubmit = () => {
     dispatch(updateProduct(productDetails))
