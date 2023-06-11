@@ -1,9 +1,13 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Stepper from "../../Common/Stepper";
 import OrderSummary from "./Components/OrderSummary";
 import PaymentDetails from "./Components/PaymentDetails";
 
 const Order = () => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.cart);
+  console.log(state)
   return (
     <div className="lg:flex justify-between">
       <Stepper />

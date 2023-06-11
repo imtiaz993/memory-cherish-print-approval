@@ -6,7 +6,7 @@ import Product4 from "../../../Assets/images/product4.png";
 import RemoveIcon from "../../../Assets/icons/remove.svg";
 import AddIcon from "../../../Assets/icons/add.svg";
 
-const Prints = () => {
+const Prints = ({ productDetails, setProductDetails }) => {
   return (
     <div>
       <div className="lg:flex justify-between mt-5 lg:mt-8 mb-12">
