@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateProduct, updatePrints } from "../../redux/cartSlice";
+import { updateProduct, updatePrints } from "../../Redux/cartSlice";
 import Stepper from "../../Common/Stepper";
 import Finish from "./Components/Finish";
 import ProtectiveCoating from "./Components/ProtectiveCoating";

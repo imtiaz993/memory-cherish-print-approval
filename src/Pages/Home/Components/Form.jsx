@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateCart } from "../../../redux/cartSlice";
+import { updateCart } from "../../../Redux/cartSlice";
 import PhoneNumber from "./PhoneNumber";
 
 const Form = () => {

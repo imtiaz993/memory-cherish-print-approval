@@ -3,7 +3,7 @@ import RemoveIcon from "../../../Assets/icons/remove.svg";
 import AddIcon from "../../../Assets/icons/add.svg";
 import CloseIcon from "../../../Assets/icons/close.svg";
 import AccordionIcon from "../../../Assets/icons/order-accordion.svg";
-import { updatePrints } from "../../../redux/cartSlice";
+import { updatePrints } from "../../../Redux/cartSlice";
 import { useDispatch } from "react-redux";
 
 const OrderSummary = ({ state, prints, setPrints }) => {

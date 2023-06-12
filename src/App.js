@@ -1,7 +1,7 @@
 import "./App.css";
 import Routes from "./Routes/Routes";
 import { Provider } from "react-redux";
-import { persistor, store } from "./redux/store";
+import { persistor, store } from "./Redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 
 function App() {

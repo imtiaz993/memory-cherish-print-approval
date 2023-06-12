@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Stepper from "../../Common/Stepper";
 import Accordion from "./Components/Accordion";
-import { updatePrints } from "../../redux/cartSlice";
+import { updatePrints } from "../../Redux/cartSlice";
 import { useState } from "react";
 
 const FramedPrints = () => {

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Stepper from "../../Common/Stepper";
 import OrderSummary from "./Components/OrderSummary";
 import PaymentDetails from "./Components/PaymentDetails";
-import { updatePrints } from "../../redux/cartSlice";
+import { updatePrints } from "../../Redux/cartSlice";
 
 const Order = () => {
   const dispatch = useDispatch();
