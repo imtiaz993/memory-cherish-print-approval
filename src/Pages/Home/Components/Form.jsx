@@ -9,7 +9,6 @@ const Form = () => {
   const dispatch = useDispatch()
   const state = useSelector((state) => state.value);
   const [deliveryDetails, setDeliveryDetails] = useState({...state.cart});
-console.log("TEST",deliveryDetails)
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateCart(deliveryDetails))

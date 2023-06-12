@@ -16,7 +16,6 @@ const Stepper = () => {
     currentPath === "framed-prints" ||
     currentPath === "order";
   const active3 = currentPath === "order";
-  console.log(currentPath);
   return (
     <div className="lg:w-[360px] lg:mr-11 mt-5 lg:mb-10">
       <div className="w-11/12 lg:w-3/4 mx-auto lg:mx-0 lg:ml-auto">

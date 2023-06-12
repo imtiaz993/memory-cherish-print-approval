@@ -3,20 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import Stepper from "../../Common/Stepper";
 import OrderSummary from "./Components/OrderSummary";
 import PaymentDetails from "./Components/PaymentDetails";
-import { updateOrder } from "../../redux/cartSlice";
+import { updatePrints } from "../../redux/cartSlice";
 
 const Order = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.value);
-  const [order, setOrder] = useState({...state.order});
-
-  console.log(state)
-
+  const [paymentDetails, setPaymentDetails] = useState({});
+  const [prints, setPrints]=useState([...state.prints])
   const handleSubmit = (e) => {
-    dispatch(updateOrder(order))
-
+    dispatch(updatePrints(prints));
   };
-  
+
   return (
     <div className="lg:flex justify-between">
       <Stepper />
@@ -26,8 +23,8 @@ const Order = () => {
             3. Order Summery & Payment
           </h1>
           <div>
-            <OrderSummary />
-            <PaymentDetails order={order} setOrder={setOrder}/>
+            <OrderSummary state={state} prints={prints} setPrints={setPrints}/>
+            <PaymentDetails paymentDetails={paymentDetails} setPaymentDetails={setPaymentDetails} />
           </div>
         </div>
       </div>

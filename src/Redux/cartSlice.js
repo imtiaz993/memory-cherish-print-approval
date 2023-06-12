@@ -4,7 +4,13 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState: { value: {
     cart:{},
-    product:{},
+    product:{
+      finish: "Mate Finish",
+      protectiveCoating: true,
+      frames: true,
+      shippingTime: "normal",
+
+    },
     prints:[],
     order:{}
   } },

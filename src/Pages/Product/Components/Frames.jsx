@@ -26,7 +26,7 @@ const Frames = ({ productDetails, setProductDetails }) => {
         <div className="shadow-mobile-card  lg:shadow-none mt-3 bg-white rounded-xl py-2 px-3">
           <label className="flex items-center text-base font-medium cursor-pointer">
             <input
-              checked={productDetails.frames == false}
+              checked={productDetails.frames === false}
               onClick={() => {
                 setProductDetails({
                   ...productDetails,

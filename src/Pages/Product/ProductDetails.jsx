@@ -14,8 +14,8 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.value);
-  console.log("TEST",state)
   const [productDetails, setProductDetails] = useState({...state.product});
+  console.log("STATE",state.prints)
   const [prints, setPrints]=useState([...state.prints])
 
   const handleSubmit = () => {

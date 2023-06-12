@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import CheckIcon from "../../../Assets/icons/black-check.svg";
 import MorePhotos from "./MorePhotos";
 import UrgentPolicy from "./UrgentPolicy";
 
 const Shipping = ({ productDetails, setProductDetails }) => {
-  const [time, setTime] = useState("");
   return (
     <>
       <div>

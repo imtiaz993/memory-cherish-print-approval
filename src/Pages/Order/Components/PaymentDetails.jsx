@@ -7,10 +7,9 @@ import VisaIcon from "../../../Assets/icons/visa.png";
 import MasterCardIcon from "../../../Assets/icons/mastercard.png";
 import CardsIcon from "../../../Assets/icons/cards.png";
 import CVVIcon from "../../../Assets/icons/cvv.png";
-import Order from "../Order";
 import Country from "./Country";
 
-const PaymentDetails = ({ order, setOrder }) => {
+const PaymentDetails = ({ paymentDetails, setPaymentDetails }) => {
   const [payWith, setPayWith] = useState("card");
   const [isNewCard, setIsNewCard] = useState(false);
   const [selectedCard, setSelectedCard] = useState({
@@ -63,16 +62,16 @@ const PaymentDetails = ({ order, setOrder }) => {
                 placeholder="Jonah Rathmer"
                 type="text"
                 onChange={(e) => {
-                  setOrder({ ...order, fullname: e.target.value });
+                  setPaymentDetails({ ...paymentDetails, fullname: e.target.value });
                 }}
-                value={order.fullname}
+                value={paymentDetails.fullname}
               />
             </div>
             <div className="mt-4 lg:mt-6 order-country">
               <p className="text-base lg:text-xl font-semibold text-black mb-2">
                 Country
               </p>
-              <Country order={order} setOrder={setOrder} />
+              <Country paymentDetails={paymentDetails} setPaymentDetails={setPaymentDetails} />
             </div>
             <div className="mt-4 lg:mt-6">
               <p className="text-base lg:text-xl font-semibold text-black mb-2">
@@ -83,9 +82,9 @@ const PaymentDetails = ({ order, setOrder }) => {
                 placeholder="1964 Quiet Valley Lane"
                 type="text"
                 onChange={(e) => {
-                  setOrder({ ...order, address: e.target.value });
+                  setPaymentDetails({ ...paymentDetails, address: e.target.value });
                 }}
-                value={order.address}
+                value={paymentDetails.address}
               />
             </div>
             <div className="mt-4 lg:mt-6">
@@ -190,9 +189,9 @@ const PaymentDetails = ({ order, setOrder }) => {
                           placeholder="1234 5678 5487 7544"
                           type="number"
                           onChange={(e) => {
-                            setOrder({ ...order, card: e.target.value });
+                            setPaymentDetails({ ...paymentDetails, card: e.target.value });
                           }}
-                          value={order.card}
+                          value={paymentDetails.card}
                         />
                         <img className="h-5 md:h-7" src={CardsIcon} alt="" />
                       </div>
@@ -207,9 +206,9 @@ const PaymentDetails = ({ order, setOrder }) => {
                           placeholder="MM/YY"
                           type="text"
                           onChange={(e) => {
-                            setOrder({ ...order, expiry: e.target.value });
+                            setPaymentDetails({ ...paymentDetails, expiry: e.target.value });
                           }}
-                          value={order.expiry}
+                          value={paymentDetails.expiry}
                         />
                       </div>
                       <div className="mt-2 lg:mt-3">
@@ -222,9 +221,9 @@ const PaymentDetails = ({ order, setOrder }) => {
                             placeholder="CVV"
                             type="number"
                             onChange={(e) => {
-                              setOrder({ ...order, cvv: e.target.value });
+                              setPaymentDetails({ ...paymentDetails, cvv: e.target.value });
                             }}
-                            value={order.cvv}
+                            value={paymentDetails.cvv}
                           />
                           <img className="h-6" src={CVVIcon} alt="" />
                         </div>

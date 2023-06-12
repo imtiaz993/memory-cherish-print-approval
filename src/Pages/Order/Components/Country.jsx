@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactFlagsSelect from "react-flags-select";
 
-const Country = ({ order, setOrder }) => {
+const Country = ({ paymentDetails, setPaymentDetails }) => {
   const customLabels = {
     US: { primary: "United States" },
     CA: { primary: "Canada" },
@@ -14,8 +14,8 @@ const Country = ({ order, setOrder }) => {
 
   const onSelect = (code) => {
     setSelected(code);
-    setOrder({
-      ...order,
+    setPaymentDetails({
+      ...paymentDetails,
       country: customLabels[code].primary,
     });
   };

@@ -12,7 +12,6 @@ const FramedPrints = () => {
   const state = useSelector((state) => state.value);
   const [framedPrints, setFramedPrints] = useState([...state.prints]);
 
-  console.log(state)
 
   const handleSubmit = (e) => {
     dispatch(updatePrints(framedPrints))

@@ -3,6 +3,8 @@ import Product1 from "../../../Assets/images/product1.png";
 import Product2 from "../../../Assets/images/product2.png";
 import Product3 from "../../../Assets/images/product3.png";
 import Product4 from "../../../Assets/images/product4.png";
+import Product1Framed from "../../../Assets/images/product1Framed.png";
+import Product2Framed from "../../../Assets/images/product2Framed.png";
 import RemoveIcon from "../../../Assets/icons/remove.svg";
 import AddIcon from "../../../Assets/icons/add.svg";
 
@@ -11,21 +13,24 @@ const Prints = ({ prints, setPrints }) => {
     {
       img: Product1,
       id: "1",
+      framedImage:Product1Framed
     },
     {
       img: Product2,
       id: "2",
+      framedImage:Product2Framed
     },
     {
       img: Product3,
       id: "3",
+      framedImage:Product1Framed
     },
     {
       img: Product4,
       id: "4",
+      framedImage:Product2Framed
     },
   ];
-console.log(prints)
   const sizes = [
     {
       size4x6: {
@@ -60,7 +65,6 @@ console.log(prints)
   ];
 
   const updatePrints = (index, key, value) => {
-    console.log("TESTING VALUE1", value)
     setPrints((prevFramedPrints) => {
       const updatedFramedPrints = [...prevFramedPrints];
       const productIndex = index; // Assuming `index` is the index of the product to update
@@ -83,19 +87,49 @@ console.log(prints)
 
   useEffect(() => {
     const tempArray = [];
-    products.map((item, index) => {
-      tempArray.push({
-        [`product${index}`]: {
-          size4x6: 0,
-          size5x7: 0,
-          size8x10: 0,
-          size11x14: 0,
-          size16x20: 0,
-        },
+      products.map((item, index) => {
+        tempArray.push({
+          [`product${index}`]: {
+            size4x6: 0,
+            size5x7: 0,
+            size8x10: 0,
+            size11x14: 0,
+            size16x20: 0,
+            image:item.img,
+            framedImage:item.framedImage
+          },
+        });
       });
-    });
-    setPrints([...tempArray]);
+      setPrints([...tempArray]);
   }, []);
+
+
+  // const updatePrint = (index, key, value) => {
+  //   const updatedFramedPrints = prints.map((product, i) => {
+  //     if (i === index) {
+  //       const keys = Object.keys(product);
+  //       const productKey = keys[0];
+  //       const productData = product[productKey];
+  
+  //       if (value === 0) {
+  //         const updatedProductData = { ...productData };
+  //         delete updatedProductData[key];
+  
+  //         return { [productKey]: updatedProductData };
+  //       } else {
+  //         return {
+  //           [productKey]: { ...productData, [key]: value },
+  //         };
+  //       }
+  //     } else {
+  //       return product;
+  //     }
+  //   });
+  
+  //   dispatch(updatePrints(updatedFramedPrints));
+  //   setPrints(updatedFramedPrints);
+  // };
+
   return (
     <div>
       <div className="lg:flex justify-between mt-5 lg:mt-8 mb-12">
@@ -107,9 +141,9 @@ console.log(prints)
         </p>
       </div>
       <div className="grid grid-cols-6">
-        <div className="bg-[#FFEBDD] rounded-tl-xl">
+        <div className="bg-[#FFEBDD] rounded-tl-xl md:border-b-2 md:border-[#C0BDB7] md:border-opacity-30 border-y md:border-y-0 md:border-l-0 border-l border-[#767676]">
           <div className="">
-            <div className="h-20 flex ml-2 items-center"></div>
+            <div className=" h-20 flex ml-2 items-center"></div>
           </div>
         </div>
         {sizes.map((item, ind) => {
@@ -117,9 +151,9 @@ console.log(prints)
           const sizeObject = item[key];
           return (
             <div
-              className={`${
+              className={`md:border-b-2 md:border-[#C0BDB7] md:border-opacity-30 border-y md:border-y-0 md:border-l-0 border-l border-[#767676] ${
                 ind % 2 === 1 ? "bg-[#EFEFEF] bg-opacity-50" : "bg-white"
-              } ${ind === sizes.length - 1 && "rounded-tr-xl"}`}
+              } ${ind === sizes.length - 1 && "rounded-tr-xl border-r"}`}
             >
               <div className="">
                 <div className="flex flex-col justify-center pl-2 md:pl-3 pr-2 md:pr-4 h-20 pb-2">
@@ -137,11 +171,11 @@ console.log(prints)
       </div>
 
       {prints.length>0 && products.map((item, index) => (
-        <div className="grid grid-cols-6">
+        <div className={` ${index !== products.length - 1 &&"md:border-b-2 md:border-[#C0BDB7]"} md:border-opacity-30  grid grid-cols-6`}>
           <div
-            className={`bg-[#FFEBDD] ${
-              index === products.length - 1 && "rounded-bl-xl"
-            }`}
+            className={ `${
+              index === products.length - 1 && "rounded-bl-xl "
+            } bg-[#FFEBDD]  border-b md:border-b-0 border-[#767676] border-l md:border-l-0 `}
           >
             <div className="">
               <div className="h-20 flex ml-2 items-center rounded-lg overflow-hidden">
@@ -154,13 +188,19 @@ console.log(prints)
             const value =prints[index][`product${index}`][key];
             return (
               <div
-                className={`${
-                  ind % 2 === 1 ? "bg-[#EFEFEF] bg-opacity-50" : "bg-white"
-                } ${
+                className={` ${
                   index === products.length - 1 &&
                   ind === sizes.length - 1 &&
-                  "rounded-br-xl"
-                }`}
+                  "rounded-br-xl overflow-hidden"
+                } md:border-l-0 border-b md:border-b-0 border-l  border-[#767676] ${
+                  ind % 2 === 1 ? "bg-[#EFEFEF] bg-opacity-50" : "bg-white"
+                }
+                ${
+                  ind === sizes.length - 1 &&
+                  "  border-r md:border-r-0"
+                }
+              
+                `}
               >
                 <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                   <div

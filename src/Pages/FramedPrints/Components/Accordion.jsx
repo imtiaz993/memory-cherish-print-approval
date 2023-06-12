@@ -11,12 +11,6 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
   const [isOpenAccordion, setIsOpenAccordion] = useState([]);
   const [framed, setFramed] = useState([]);
 
-  const products = [
-    { thumbnail: Product1, framedImage: Product1Framed, id: "1" },
-    { thumbnail: Product2, framedImage: Product2Framed, id: "2" },
-    { thumbnail: Product3, framedImage: Product1Framed, id: "3" },
-    { thumbnail: Product4, framedImage: Product1Framed, id: "4" },
-  ];
 
   const updateFramed = (index, key, value) => {
     setFramedPrints((prevFramedPrints) => {
@@ -45,7 +39,7 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
 
   useEffect(() => {
     const tempArray = [];
-    products.map((item, index) => {
+    framedPrints.map((item, index) => {
       tempArray.push({
         [`product${index}`]: {
           ...framedPrints[index][`product${index}`],
@@ -57,16 +51,25 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
     setFramedPrints([...tempArray]);
   }, []);
 
+  const products = framedPrints.filter((product) => {
+    const keys = Object.keys(product);
+    const sizeFrames = Object.keys(product[keys[0]]).filter((key) => key.startsWith('size') && key !== 'size');
+    return sizeFrames.some((sizeFrame) => product[keys[0]][sizeFrame] !== 0);
+  });
+
   return (
     <div>
       {framedPrints.length > 0 &&
-        products.map((item, index) => (
+        products.map((item, index) => {
+          const key = Object.keys(item)[0];
+          const object = item[key];
+        return(
           <div className="mt-4 rounded-xl lg:rounded-2xl shadow-mobile-card bg-white py-1.5 lg:py-2 px-2 lg:px-3 overflow-hidden">
             <div className="flex justify-between items-center">
               <div className="flex items-center">
                 <img
                   className="w-10 lg:w-20 rounded-lg"
-                  src={item.thumbnail}
+                  src={object.image}
                   alt=""
                 />
                 <h1 className="ml-3 sm:ml-4 lg:ml-14 text-xs sm:text-sm lg:text-xl font-bold text-[#2A2A28]">
@@ -131,7 +134,7 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
               <div className="w-full flex justify-center pb-8 lg:pb-16 border-b-[3px] border-[#FF9728]">
                 <img
                   className="w-44 md:w-auto mt-8"
-                  src={item.framedImage}
+                  src={object.framedImage}
                   alt=""
                 />
               </div>
@@ -374,7 +377,7 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
               </div>
             </div>
           </div>
-        ))}
+        )})}
     </div>
   );
 };
