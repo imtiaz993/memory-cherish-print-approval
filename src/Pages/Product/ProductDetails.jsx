@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateProduct } from "../../redux/cartSlice";
+import { updateProduct, updatePrints } from "../../redux/cartSlice";
 import Stepper from "../../Common/Stepper";
 import Finish from "./Components/Finish";
 import ProtectiveCoating from "./Components/ProtectiveCoating";
@@ -16,9 +16,11 @@ const ProductDetails = () => {
   const state = useSelector((state) => state.value);
   console.log("TEST",state)
   const [productDetails, setProductDetails] = useState({...state.product});
+  const [prints, setPrints]=useState([...state.prints])
 
   const handleSubmit = () => {
     dispatch(updateProduct(productDetails))
+    dispatch(updatePrints(prints))
     navigate("/framed-prints");
   };
 
@@ -39,8 +41,8 @@ const ProductDetails = () => {
             setProductDetails={setProductDetails}
           />
           <Prints
-            productDetails={productDetails}
-            setProductDetails={setProductDetails}
+            prints={prints}
+            setPrints={setPrints}
           />
           <Frames
             productDetails={productDetails}

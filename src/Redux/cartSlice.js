@@ -5,7 +5,7 @@ export const cartSlice = createSlice({
   initialState: { value: {
     cart:{},
     product:{},
-    framedPrints:[],
+    prints:[],
     order:{}
   } },
   reducers: {
@@ -15,8 +15,8 @@ export const cartSlice = createSlice({
     updateProduct: (state, action) => {
       state.value.product = { ...action.payload };
     },
-    updateFramedPrints: (state, action) => {
-      state.value.framedPrints = { ...action.payload };
+    updatePrints: (state, action) => {
+      state.value.prints = [...action.payload ];
     },
     updateOrder: (state, action) => {
       state.value.order = { ...action.payload };
@@ -24,6 +24,6 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { updateCart, updateProduct, updateFramedPrints, updateOrder } = cartSlice.actions;
+export const { updateCart, updateProduct, updatePrints, updateOrder } = cartSlice.actions;
 
 export default cartSlice.reducer;

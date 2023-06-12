@@ -12,10 +12,10 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
   const [framed, setFramed] = useState([]);
 
   const products = [
-    { thumbnail: Product1, framedImage: Product1Framed },
-    { thumbnail: Product2, framedImage: Product2Framed },
-    { thumbnail: Product3, framedImage: Product1Framed },
-    { thumbnail: Product4, framedImage: Product1Framed },
+    { thumbnail: Product1, framedImage: Product1Framed, id: "1" },
+    { thumbnail: Product2, framedImage: Product2Framed, id: "2" },
+    { thumbnail: Product3, framedImage: Product1Framed, id: "3" },
+    { thumbnail: Product4, framedImage: Product1Framed, id: "4" },
   ];
 
   const updateFramed = (index, key, value) => {
@@ -48,6 +48,7 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
     products.map((item, index) => {
       tempArray.push({
         [`product${index}`]: {
+          ...framedPrints[index][`product${index}`],
           size: "8x10",
           color: "Black",
         },

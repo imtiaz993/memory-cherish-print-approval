@@ -3,19 +3,19 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Stepper from "../../Common/Stepper";
 import Accordion from "./Components/Accordion";
-import { updateFramedPrints } from "../../redux/cartSlice";
+import { updatePrints } from "../../redux/cartSlice";
 import { useState } from "react";
 
 const FramedPrints = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.value);
-  const [framedPrints, setFramedPrints] = useState([...state.framedPrints]);
+  const [framedPrints, setFramedPrints] = useState([...state.prints]);
 
   console.log(state)
 
   const handleSubmit = (e) => {
-    dispatch(updateFramedPrints(framedPrints))
+    dispatch(updatePrints(framedPrints))
     navigate("/order");
   };
 
