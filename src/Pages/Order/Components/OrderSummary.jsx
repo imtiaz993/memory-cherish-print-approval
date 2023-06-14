@@ -206,7 +206,7 @@ const OrderSummary = ({ state, prints, setPrints }) => {
                       {sizes.map((size, ind) => (
                         <div
                           className={`${
-                            index !== 0 ? "mt-1 md:mt-0" : ""
+                            ind !== 0 ? "mt-1 md:mt-0" : ""
                           } select-none  flex items-center justify-center md:pr-10`}
                         >
                           <div
@@ -248,7 +248,7 @@ const OrderSummary = ({ state, prints, setPrints }) => {
                         return (
                           <div
                             className={`${
-                              index !== 0 ? "mt-1 md:mt-0" : ""
+                              ind !== 0 ? "mt-1 md:mt-0" : ""
                             }  select-none  flex items-center justify-end`}
                           >
                             <p className="text-center text-xs md:text-base text-[#6B6E76]">
