@@ -27,7 +27,7 @@ const OrderSummary = ({ state, prints, setPrints }) => {
             updatedProductData[key] = productData[key];
           }
         }
-        
+
         const count = Object.keys(updatedProductData).reduce(
           (accumulator, currentValue) => {
             if (currentValue.includes("size")) {
@@ -96,12 +96,12 @@ const OrderSummary = ({ state, prints, setPrints }) => {
         const object = product[key];
         const sizes = [];
         Object.keys(object).forEach((element) => {
-          if (element.includes("x") && object[element]>0) {
+          if (element.includes("x") && object[element] > 0) {
             sizes.push(element);
           }
         });
         sizes.map((size) => {
-          console.log(product,size, object[size])
+          console.log(product, size, object[size]);
           printCharges = printCharges + sizePrice[size] * object[size];
           finishCharges = finishCharges + finishFee;
           coatingCharges = coatingCharges + coatingFee;
@@ -192,15 +192,23 @@ const OrderSummary = ({ state, prints, setPrints }) => {
                       </div>
                       <div className="ml-2 md:ml-0">
                         {sizes.map((size) => (
-                          <p className="text-xs md:text-base text-[#2A2A28] font-bold">
+                          <p
+                            className={`${
+                              index !== 0 ? "mt-1 md:mt-0" : ""
+                            } text-xs md:text-base text-[#2A2A28] font-bold`}
+                          >
                             {size.replace("size", "")} Prints
                           </p>
                         ))}
                       </div>
                     </div>
                     <div>
-                      {sizes.map((size) => (
-                        <div className="select-none  flex items-center justify-center md:pr-10">
+                      {sizes.map((size, index) => (
+                        <div
+                          className={`${
+                            index !== 0 ? "mt-1 md:mt-0" : ""
+                          } select-none  flex items-center justify-center md:pr-10`}
+                        >
                           <div
                             onClick={() => {
                               if (object[size] > 1) {
@@ -236,9 +244,13 @@ const OrderSummary = ({ state, prints, setPrints }) => {
                       ))}
                     </div>
                     <div>
-                      {sizes.map((size) => {
+                      {sizes.map((size, index) => {
                         return (
-                          <div className="select-none  flex items-center justify-end">
+                          <div
+                            className={`${
+                              index !== 0 ? "mt-1 md:mt-0" : ""
+                            }  select-none  flex items-center justify-end`}
+                          >
                             <p className="text-center text-xs md:text-base text-[#6B6E76]">
                               ${sizePrice[size] * object[size]}
                             </p>
