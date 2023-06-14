@@ -101,13 +101,12 @@ const OrderSummary = ({ state, prints, setPrints }) => {
           }
         });
         sizes.map((size) => {
-          console.log(product, size, object[size]);
           printCharges = printCharges + sizePrice[size] * object[size];
-          finishCharges = finishCharges + finishFee;
-          coatingCharges = coatingCharges + coatingFee;
           totalPrints = totalPrints + object[size];
         });
       });
+      coatingCharges = coatingFee * totalPrints;
+      finishCharges =  finishFee * totalPrints;
     setTotal(shippingCharges + finishCharges + coatingCharges + printCharges);
     setCharges({
       shippingCharges,

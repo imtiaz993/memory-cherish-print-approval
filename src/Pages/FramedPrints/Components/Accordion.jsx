@@ -22,12 +22,10 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
           [productKey]: updatedProduct,
         };
       }
-      console.log(updatedFramedPrints)
       return updatedFramedPrints;
     });
   };
 
-  console.log(framedPrints)
   useEffect(() => {
     setIsOpenAccordion([...framed]);
   }, [framed]);
@@ -116,14 +114,12 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
     }
     return color;
   };
-  console.log(framedPrints[0]["product" + 0].size)
   return (
     <div>
       {framedPrints.length > 0 &&
         products.map((item, index) => {
           const key = Object.keys(item)[0];
           const object = item[key];
-          console.log(framedPrints[index]["product" + index].color);
           return (
             <div className="mt-4 rounded-xl lg:rounded-2xl shadow-mobile-card bg-white py-1.5 lg:py-2 px-2 lg:px-3 overflow-hidden">
               <div className="flex justify-between items-center">
