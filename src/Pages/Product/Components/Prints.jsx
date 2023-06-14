@@ -1,69 +1,10 @@
 import React, { useEffect } from "react";
-import Product1 from "../../../Assets/images/product1.png";
-import Product2 from "../../../Assets/images/product2.png";
-import Product3 from "../../../Assets/images/product3.png";
-import Product4 from "../../../Assets/images/product4.png";
-import Product1Framed from "../../../Assets/images/product1Framed.png";
-import Product2Framed from "../../../Assets/images/product2Framed.png";
 import RemoveIcon from "../../../Assets/icons/remove.svg";
 import AddIcon from "../../../Assets/icons/add.svg";
+import { products, sizes } from "../../../Data/utils";
 
 const Prints = ({ prints, setPrints }) => {
-  const products = [
-    {
-      img: Product1,
-      id: "1",
-      framedImage:Product1Framed
-    },
-    {
-      img: Product2,
-      id: "2",
-      framedImage:Product2Framed
-    },
-    {
-      img: Product3,
-      id: "3",
-      framedImage:Product1Framed
-    },
-    {
-      img: Product4,
-      id: "4",
-      framedImage:Product2Framed
-    },
-  ];
-  const sizes = [
-    {
-      size4x6: {
-        size: "4x6",
-        price: "10",
-      },
-    },
-    {
-      size5x7: {
-        size: "5x7",
-        price: "15",
-      },
-    },
-    {
-      size8x10: {
-        size: "8x10",
-        price: "25",
-      },
-    },
-    {
-      size11x14: {
-        size: "11x14",
-        price: "34",
-      },
-    },
-    {
-      size16x20: {
-        size: "16x20",
-        price: "49",
-      },
-    },
-  ];
-
+  
   const updatePrints = (index, key, value) => {
     setPrints((prevFramedPrints) => {
       const updatedFramedPrints = [...prevFramedPrints];
@@ -161,7 +102,7 @@ const Prints = ({ prints, setPrints }) => {
                     {sizeObject.size} Print
                   </h1>
                   <p className="text-[#6B6E76] text-[10px] md:text-sm mt-1 md:mt-0">
-                    {sizeObject.price} per photo
+                    ${sizeObject.price} per photo
                   </p>
                 </div>
               </div>
@@ -171,7 +112,7 @@ const Prints = ({ prints, setPrints }) => {
       </div>
 
       {prints.length>0 && products.map((item, index) => (
-        <div className={` ${index !== products.length - 1 &&"md:border-b-2 md:border-[#C0BDB7]"} md:border-opacity-30  grid grid-cols-6`}>
+        <div className={`select-none  ${index !== products.length - 1 &&"md:border-b-2 md:border-[#C0BDB7]"} md:border-opacity-30  grid grid-cols-6`}>
           <div
             className={ `${
               index === products.length - 1 && "rounded-bl-xl "

@@ -14,13 +14,17 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.value);
-  const [productDetails, setProductDetails] = useState({...state.product});
-  const [prints, setPrints]=useState([...state.prints])
+  const [productDetails, setProductDetails] = useState({ ...state.product });
+  const [prints, setPrints] = useState([...state.prints]);
 
   const handleSubmit = () => {
-    dispatch(updateProduct(productDetails))
-    dispatch(updatePrints(prints))
-    navigate("/framed-prints");
+    dispatch(updateProduct(productDetails));
+    dispatch(updatePrints(prints));
+    if (productDetails.frames) {
+      navigate("/framed-prints");
+    } else {
+      navigate("/order");
+    }
   };
 
   return (
@@ -39,10 +43,7 @@ const ProductDetails = () => {
             productDetails={productDetails}
             setProductDetails={setProductDetails}
           />
-          <Prints
-            prints={prints}
-            setPrints={setPrints}
-          />
+          <Prints prints={prints} setPrints={setPrints} />
           <Frames
             productDetails={productDetails}
             setProductDetails={setProductDetails}

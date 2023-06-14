@@ -13,9 +13,9 @@ const Finish = ({ productDetails, setProductDetails }) => {
         <div className="flex flex-col justify-between">
           <label className="flex mb-4 cursor-pointer">
             <input
-              checked={productDetails.finish === "Mate Finish"}
+              checked={productDetails.finish === "Matte Finish"}
               onClick={() => {
-                setProductDetails({ ...productDetails, finish: "Mate Finish" });
+                setProductDetails({ ...productDetails, finish: "Matte Finish" });
               }}
               type="radio"
               className="mt-0.5 cursor-pointer "

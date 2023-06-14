@@ -20,7 +20,7 @@ const Order = () => {
       <div className="lg:w-[calc(100%-360px)] lg:bg-[#FBF4E3]">
         <div className="w-11/12 xl:w-4/5 mx-auto mb-10">
           <h1 className="mt-8 lg:mt-32 mb-6 lg:mb-12 text-3xl lg:text-4xl font-semibold text-black text-center">
-            3. Order Summery & Payment
+            3. Order Summary & Payment
           </h1>
           <div>
             <OrderSummary state={state} prints={prints} setPrints={setPrints}/>

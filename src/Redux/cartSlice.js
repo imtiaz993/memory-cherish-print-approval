@@ -5,7 +5,7 @@ export const cartSlice = createSlice({
   initialState: { value: {
     cart:{},
     product:{
-      finish: "Mate Finish",
+      finish: "Matte Finish",
       protectiveCoating: true,
       frames: true,
       shippingTime: "normal",

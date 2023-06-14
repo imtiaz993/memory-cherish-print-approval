@@ -3,11 +3,10 @@ import GooglePayIcon from "../../../Assets/icons/google-pay.png";
 import ApplePayIcon from "../../../Assets/icons/apple-pay.png";
 import PayPalIcon from "../../../Assets/icons/paypal.png";
 import CreditCardIcon from "../../../Assets/icons/credit-card.svg";
-import VisaIcon from "../../../Assets/icons/visa.png";
-import MasterCardIcon from "../../../Assets/icons/mastercard.png";
 import CardsIcon from "../../../Assets/icons/cards.png";
 import CVVIcon from "../../../Assets/icons/cvv.png";
 import Country from "./Country";
+import { cards } from "../../../Data/utils";
 
 const PaymentDetails = ({ paymentDetails, setPaymentDetails }) => {
   const [payWith, setPayWith] = useState("card");
@@ -19,20 +18,6 @@ const PaymentDetails = ({ paymentDetails, setPaymentDetails }) => {
     cardIcon: null,
   });
 
-  const cards = [
-    {
-      number: "**** **** **** 7464",
-      expiry: "12/26",
-      cvv: "",
-      cardIcon: VisaIcon,
-    },
-    {
-      number: "**** **** **** 5863",
-      expiry: "12/25",
-      cvv: "",
-      cardIcon: MasterCardIcon,
-    },
-  ];
 
   return (
     <div className="mt-4 rounded-xl lg:rounded-2xl shadow-mobile-card bg-white py-1.5 lg:py-2 px-2 lg:px-3">

@@ -5,26 +5,12 @@ import CloseIcon from "../../../Assets/icons/close.svg";
 import AccordionIcon from "../../../Assets/icons/order-accordion.svg";
 import { updatePrints } from "../../../Redux/cartSlice";
 import { useDispatch } from "react-redux";
+import { fee, coatingFee, finishFee, sizePrice } from "../../../Data/utils";
 
 const OrderSummary = ({ state, prints, setPrints }) => {
   const dispatch = useDispatch();
   const [total, setTotal] = useState(0);
   const [products, setProducts] = useState();
-  const fee = {
-    normal: "0",
-    urgent: "29.00",
-    mostUrgent: "0",
-  };
-  const coatingFee = 9;
-  const finishFee = 9;
-
-  const sizePrice = {
-    size4x6: 10,
-    size5x7: 15,
-    size8x10: 25,
-    size11x14: 34,
-    size16x20: 49,
-  };
 
   const [isOpenAccordion, setIsOpenAccordion] = useState(true);
 
@@ -41,11 +27,8 @@ const OrderSummary = ({ state, prints, setPrints }) => {
             updatedProductData[key] = productData[key];
           }
         }
-
-        const key = Object.keys(product)[0];
-        const object = product[key];
-
-        const count = Object.keys(object).reduce(
+        
+        const count = Object.keys(updatedProductData).reduce(
           (accumulator, currentValue) => {
             if (currentValue.includes("size")) {
               return accumulator + 1;
@@ -55,7 +38,7 @@ const OrderSummary = ({ state, prints, setPrints }) => {
           },
           0
         );
-        if (count > 0) {
+        if (count > 1) {
           return { [keys[0]]: updatedProductData };
         } else return undefined;
       })
@@ -113,15 +96,16 @@ const OrderSummary = ({ state, prints, setPrints }) => {
         const object = product[key];
         const sizes = [];
         Object.keys(object).forEach((element) => {
-          if (element.includes("x")) {
+          if (element.includes("x") && object[element]>0) {
             sizes.push(element);
           }
         });
         sizes.map((size) => {
+          console.log(product,size, object[size])
           printCharges = printCharges + sizePrice[size] * object[size];
           finishCharges = finishCharges + finishFee;
           coatingCharges = coatingCharges + coatingFee;
-          totalPrints = totalPrints + 1 + object[size];
+          totalPrints = totalPrints + object[size];
         });
       });
     setTotal(shippingCharges + finishCharges + coatingCharges + printCharges);
@@ -216,10 +200,9 @@ const OrderSummary = ({ state, prints, setPrints }) => {
                     </div>
                     <div>
                       {sizes.map((size) => (
-                        <div className="flex items-center justify-center md:pr-10">
+                        <div className="select-none  flex items-center justify-center md:pr-10">
                           <div
                             onClick={() => {
-                              console.log(object);
                               if (object[size] > 1) {
                                 updatePrint(index, size, object[size] - 1);
                               }
@@ -255,7 +238,7 @@ const OrderSummary = ({ state, prints, setPrints }) => {
                     <div>
                       {sizes.map((size) => {
                         return (
-                          <div className="flex items-center justify-end">
+                          <div className="select-none  flex items-center justify-end">
                             <p className="text-center text-xs md:text-base text-[#6B6E76]">
                               ${sizePrice[size] * object[size]}
                             </p>
@@ -284,7 +267,7 @@ const OrderSummary = ({ state, prints, setPrints }) => {
               </p>
               <p className="text-center pr-10 "></p>
               <p className="text-right pr-5 md:pr-9 text-xs md:text-base text-[#6B6E76]">
-                {charges?.shippingCharges}
+                ${charges?.shippingCharges}
               </p>
             </div>
             <div className="py-3 px-2 border-t border-[#DAD6CE] grid grid-cols-4 md:grid-cols-5 items-center pl-14 md:pl-[92px] pr-6">
