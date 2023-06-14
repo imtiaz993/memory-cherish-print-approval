@@ -203,7 +203,7 @@ const OrderSummary = ({ state, prints, setPrints }) => {
                       </div>
                     </div>
                     <div>
-                      {sizes.map((size, index) => (
+                      {sizes.map((size, ind) => (
                         <div
                           className={`${
                             index !== 0 ? "mt-1 md:mt-0" : ""
@@ -244,7 +244,7 @@ const OrderSummary = ({ state, prints, setPrints }) => {
                       ))}
                     </div>
                     <div>
-                      {sizes.map((size, index) => {
+                      {sizes.map((size, ind) => {
                         return (
                           <div
                             className={`${

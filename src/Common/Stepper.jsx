@@ -72,7 +72,7 @@ const Stepper = () => {
           </div>
           <div className="-ml-4 lg:ml-0 flex lg:flex-col items-center lg:items-end">
             <div className="flex flex-col-reverse lg:flex-row items-end relative">
-              <p className="min-w-[100px] absolute left-[-38px] lg:static font-medium text-center flex justify-end text-xs lg:text-base mt-2 lg:mt-0 lg:mr-1 lg:w-36">
+              <p className="min-w-[105px] absolute left-[-38px] lg:static font-medium text-center flex justify-end text-xs lg:text-base mt-2 lg:mt-0 lg:mr-1 lg:w-36">
                 Order Summary &
                 <br /> Payment
               </p>
