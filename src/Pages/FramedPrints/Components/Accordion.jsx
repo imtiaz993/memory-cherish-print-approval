@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import FrameWidget from "./FrameWidget";
 import AccordionCollapse from "../../../Assets/icons/accordion-collapse.svg";
 import Frame from "../../../Assets/icons/frame.svg";
 
@@ -23,11 +22,12 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
           [productKey]: updatedProduct,
         };
       }
-
+      console.log(updatedFramedPrints)
       return updatedFramedPrints;
     });
   };
 
+  console.log(framedPrints)
   useEffect(() => {
     setIsOpenAccordion([...framed]);
   }, [framed]);
@@ -54,12 +54,76 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
     return sizeFrames.some((sizeFrame) => product[keys[0]][sizeFrame] !== 0);
   });
 
+  const getFrameDimentions = (index) => {
+    let dimention = "";
+    switch (framedPrints[index]["product" + index].size) {
+      case "8x10":
+        dimention =
+          "w-[72px] md:w-[144px] h-[86px]  md:h-[172px] border-[10px] md:border-[20px]";
+        break;
+      case "11x14":
+        dimention =
+          "w-[88px] md:w-[176px] h-[115px]  md:h-[230px] border-[12px] md:border-[24px]";
+        break;
+      case "12x12":
+        dimention =
+          "w-[88px] md:w-[176px] h-[106px]  md:h-[212px] border-[12px] md:border-[24px]";
+        break;
+      case "16x16":
+        dimention =
+          "w-[128px] md:w-[256px] h-[128px]  md:h-[256px] border-[14px] md:border-[28px]";
+        break;
+      case "16x20":
+        dimention =
+          "w-[128px] md:w-[256px] h-[160px]  md:h-[320px] border-[14px] md:border-[28px]";
+        break;
+      case "20x30":
+        dimention =
+          "w-[160px] md:w-[320px] h-[200px]  md:h-[400px] border-[16px] md:border-[32px]";
+        break;
+      case "24x36":
+        dimention =
+          "w-[192  px] md:w-[384px] h-[240px] md:h-[480px] border-[18px] md:border-[36px]";
+        break;
+
+      default:
+        break;
+    }
+    return dimention;
+  };
+
+  const getFrameColor = (index) => {
+    let color = "";
+    switch (framedPrints[index]["product" + index].color) {
+      case "Black":
+        color = "border-[#000000]";
+        break;
+      case "White":
+        color = "border-[#FFFFFF]";
+        break;
+      case "Brown":
+        color = "border-[#964B00]";
+        break;
+      case "Natural":
+        color = "border-[#B48F8F]";
+        break;
+      case "Matte Gold":
+        color = "border-[#D4B44A]";
+        break;
+
+      default:
+        break;
+    }
+    return color;
+  };
+  console.log(framedPrints[0]["product" + 0].size)
   return (
     <div>
       {framedPrints.length > 0 &&
         products.map((item, index) => {
           const key = Object.keys(item)[0];
           const object = item[key];
+          console.log(framedPrints[index]["product" + index].color);
           return (
             <div className="mt-4 rounded-xl lg:rounded-2xl shadow-mobile-card bg-white py-1.5 lg:py-2 px-2 lg:px-3 overflow-hidden">
               <div className="flex justify-between items-center">
@@ -129,10 +193,19 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
                 }`}
               >
                 <div className="w-full flex justify-center pb-8 lg:pb-16 border-b-[3px] border-[#FF9728]">
-                  {/* <div className="w-44 md:w-auto mt-8 relative"> */}
-                    {/* <FrameWidget /> */}
-                    <img className="w-44 md:w-auto mt-8" src={object.framedImage} alt=""/>
-                  {/* </div> */}
+                  <div
+                    className={`rounded-[5px] shadow-mobile-card ${getFrameDimentions(
+                      index
+                    )} ${getFrameColor(index)} mt-8`}
+                  >
+                    <div className="w-full h-full">
+                      <img
+                        className="object-fill w-full h-full"
+                        src={object.framedImage}
+                        alt=""
+                      />
+                    </div>
+                  </div>
                 </div>
                 <div className="mt-5 lg:mt-10">
                   <div className="flex justify-between items-baseline mb-6 lg:mb-10">
