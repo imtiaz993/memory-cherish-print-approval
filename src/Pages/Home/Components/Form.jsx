@@ -15,13 +15,15 @@ const Form = ({ data }) => {
     navigate("/product");
   };
   useEffect(() => {
-    setDeliveryDetails({
-      firstname: data.firstName,
-      lastname: data.lastName,
-      shippingAddress: data.address,
-      phoneCode: data.phone,
-      phoneNumber: Number(data.phone.slice(2)),
-    });
+    if (data) {
+      setDeliveryDetails({
+        firstname: data.firstName,
+        lastname: data.lastName,
+        shippingAddress: data.address,
+        phoneCode: data.phone,
+        phoneNumber: Number(data.phone.slice(2)),
+      });
+    }
   }, []);
 
   return (
