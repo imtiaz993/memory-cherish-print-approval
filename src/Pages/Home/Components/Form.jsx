@@ -1,19 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCart } from "../../../Redux/cartSlice";
 import PhoneNumber from "./PhoneNumber";
 
-const Form = () => {
+const Form = ({ data }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const state = useSelector((state) => state.value);
-  const [deliveryDetails, setDeliveryDetails] = useState({...state.cart});
+  const [deliveryDetails, setDeliveryDetails] = useState({ ...state.cart });
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateCart(deliveryDetails))
+    dispatch(updateCart(deliveryDetails));
     navigate("/product");
   };
+  useEffect(() => {
+    setDeliveryDetails({
+      firstname: data.firstName,
+      lastname: data.lastName,
+      shippingAddress: data.address,
+      phoneCode: data.phone,
+      phoneNumber: Number(data.phone.slice(2)),
+    });
+  }, []);
 
   return (
     <div className="lg:w-[calc(100%-360px)] lg:bg-[#FBF4E3]">

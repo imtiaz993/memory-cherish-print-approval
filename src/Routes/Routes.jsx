@@ -11,7 +11,7 @@ const WebRoutes = () => {
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/:id" element={<Home />} />
         <Route path="/product" element={<ProductDetails />} />
         <Route path="/framed-prints" element={<FramedPrints />} />
         <Route path="/order" element={<Order />} />
