@@ -3,8 +3,7 @@ import RemoveIcon from "../../../Assets/icons/remove.svg";
 import AddIcon from "../../../Assets/icons/add.svg";
 import { products, sizes } from "../../../Data/utils";
 
-const Prints = ({ prints, setPrints }) => {
-  
+const Prints = ({ prints, setPrints, fetchedInfo }) => {
   const updatePrints = (index, key, value) => {
     setPrints((prevFramedPrints) => {
       const updatedFramedPrints = [...prevFramedPrints];
@@ -28,22 +27,29 @@ const Prints = ({ prints, setPrints }) => {
 
   useEffect(() => {
     const tempArray = [];
-      products.map((item, index) => {
-        tempArray.push({
-          [`product${index}`]: {
-            size4x6: 0,
-            size5x7: 0,
-            size8x10: 0,
-            size11x14: 0,
-            size16x20: 0,
-            image:item.img,
-            framedImage:item.framedImage
+    fetchedInfo.map((item, index) => {
+      tempArray.push({
+        [`product${index}`]: {
+          size4x6: { qty: item.size["4x6"] || 0, min: item.size["4x6"] || 0 },
+          size5x7: { qty: item.size["5x7"] || 0, min: item.size["5x7"] || 0 },
+          size8x10: {
+            qty: item.size["8x10"] || 0,
+            min: item.size["8x10"] || 0,
           },
-        });
+          size11x14: {
+            qty: item.size["11x14"] || 0,
+            min: item.size["11x14"] || 0,
+          },
+          size16x20: {
+            qty: item.size["16x20"] || 0,
+            min: item.size["16x20"] || 0,
+          },
+          image: item.urls[0],
+        },
       });
-      setPrints([...tempArray]);
+    });
+    setPrints([...tempArray]);
   }, []);
-
 
   // const updatePrint = (index, key, value) => {
   //   const updatedFramedPrints = prints.map((product, i) => {
@@ -51,11 +57,11 @@ const Prints = ({ prints, setPrints }) => {
   //       const keys = Object.keys(product);
   //       const productKey = keys[0];
   //       const productData = product[productKey];
-  
+
   //       if (value === 0) {
   //         const updatedProductData = { ...productData };
   //         delete updatedProductData[key];
-  
+
   //         return { [productKey]: updatedProductData };
   //       } else {
   //         return {
@@ -66,7 +72,7 @@ const Prints = ({ prints, setPrints }) => {
   //       return product;
   //     }
   //   });
-  
+
   //   dispatch(updatePrints(updatedFramedPrints));
   //   setPrints(updatedFramedPrints);
   // };
@@ -111,64 +117,86 @@ const Prints = ({ prints, setPrints }) => {
         })}
       </div>
 
-      {prints.length>0 && products.map((item, index) => (
-        <div className={`select-none  ${index !== products.length - 1 &&"md:border-b-2 md:border-[#C0BDB7]"} md:border-opacity-30  grid grid-cols-6`}>
-          <div
-            className={ `${
-              index === products.length - 1 && "rounded-bl-xl "
-            } bg-[#FFEBDD]  border-b md:border-b-0 border-[#767676] border-l md:border-l-0 `}
-          >
-            <div className="">
-              <div className="h-20 flex ml-2 items-center rounded-lg overflow-hidden">
-                <img className="w-4/5 md:w-auto" src={item.img} alt="" />
-              </div>
-            </div>
-          </div>
-          {sizes.map((size, ind) => {
-            const key = Object.keys(size)[0];
-            const value =prints[index][`product${index}`][key];
-            return (
+      {prints.length > 0 &&
+        prints.map((item, index) => {
+          const productKey = Object.keys(item)[0];
+          const product = item[productKey];
+          return (
+            <div
+              className={`select-none  ${
+                index !== prints.length - 1 &&
+                "md:border-b-2 md:border-[#C0BDB7]"
+              } md:border-opacity-30  grid grid-cols-6`}
+            >
               <div
-                className={` ${
-                  index === products.length - 1 &&
-                  ind === sizes.length - 1 &&
-                  "rounded-br-xl overflow-hidden"
-                } md:border-l-0 border-b md:border-b-0 border-l  border-[#767676] ${
-                  ind % 2 === 1 ? "bg-[#EFEFEF] bg-opacity-50" : "bg-white"
-                }
-                ${
-                  ind === sizes.length - 1 &&
-                  "  border-r md:border-r-0"
-                }
-              
-                `}
+                className={`${
+                  index === prints.length - 1 && "rounded-bl-xl "
+                } bg-[#FFEBDD]  border-b md:border-b-0 border-[#767676] border-l md:border-l-0 `}
               >
-                <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
-                  <div
-                    onClick={() => {
-                      if(value>0){
-                        updatePrints(index, key, value-1);
-                      }
-                    }}
-                    className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center"
-                  >
-                    <img className="w-3/5 sm:w-auto " src={RemoveIcon} alt="" />
-                  </div>
-                  <h1 className="text-[#6B6E76] text-lg font-semibold">{value}</h1>
-                  <div
-                    onClick={() => {
-                      updatePrints(index, key, value+1);
-                    }}
-                    className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center"
-                  >
-                    <img className="w-3/5 sm:w-auto " src={AddIcon} alt="" />
+                <div className="">
+                  <div className="h-20 flex ml-2 items-center rounded-lg overflow-hidden">
+                    <img
+                      className="w-4/5 md:w-auto"
+                      src={product.image}
+                      alt=""
+                    />
                   </div>
                 </div>
               </div>
-            );
-          })}
-        </div>
-      ))}
+              {sizes.map((size, ind) => {
+                const key = Object.keys(size)[0];
+                const value = Number(prints[index][`product${index}`][key].qty);
+                const minValue = prints[index][`product${index}`][key].min;
+                return (
+                  <div
+                    className={` ${
+                      index === prints.length - 1 &&
+                      ind === sizes.length - 1 &&
+                      "rounded-br-xl overflow-hidden"
+                    } md:border-l-0 border-b md:border-b-0 border-l  border-[#767676] ${
+                      ind % 2 === 1 ? "bg-[#EFEFEF] bg-opacity-50" : "bg-white"
+                    }
+                ${ind === sizes.length - 1 && "  border-r md:border-r-0"}
+              
+                `}
+                  >
+                    <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
+                      <div
+                        onClick={() => {
+                          if (value > 0 && value > minValue) {
+                            updatePrints(index, key,{ qty: value - 1, min: minValue });
+                          }
+                        }}
+                        className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center"
+                      >
+                        <img
+                          className="w-3/5 sm:w-auto "
+                          src={RemoveIcon}
+                          alt=""
+                        />
+                      </div>
+                      <h1 className="text-[#6B6E76] text-lg font-semibold">
+                        {value}
+                      </h1>
+                      <div
+                        onClick={() => {
+                          updatePrints(index, key,{ qty: value + 1, min: minValue });
+                        }}
+                        className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center"
+                      >
+                        <img
+                          className="w-3/5 sm:w-auto "
+                          src={AddIcon}
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
     </div>
   );
 };

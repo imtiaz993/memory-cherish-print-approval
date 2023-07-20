@@ -21,7 +21,10 @@ const Form = ({ data }) => {
         lastname: data.lastName,
         shippingAddress: data.address,
         phoneCode: data.phone,
-        phoneNumber: Number(data.phone.slice(2)),
+        phoneNumber: data.phone.slice(2),
+        state:data.state,
+        city:data.city,
+        zip:data.zip
       });
     }
   }, []);
@@ -90,7 +93,7 @@ const Form = ({ data }) => {
                 <input
                   className="absolute w-full rounded-xl pl-[160px] z-10 py-3 px-5 border border-[#767676] outline-none"
                   placeholder="234-567-8912"
-                  type="number"
+                  type="text"
                   onChange={(e) => {
                     setDeliveryDetails({
                       ...deliveryDetails,

@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import Stepper from "../../Common/Stepper";
 import Form from "./Components/Form";
 import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateFetchedInfo } from "../../Redux/cartSlice";
 
 const Home = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState();
 
@@ -24,6 +27,21 @@ const Home = () => {
       })
       .catch((error) => {
         setLoading(false);
+        console.error(error.message);
+      });
+    fetch(
+      `https://staging.memorycherish.com/api/get-order-data.php?id=${location.pathname.replace(
+        /\//g,
+        ""
+      )}`
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((response) => {
+        dispatch(updateFetchedInfo(response.data.prints));
+      })
+      .catch((error) => {
         console.error(error.message);
       });
   }, []);

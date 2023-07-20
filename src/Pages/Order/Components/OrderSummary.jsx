@@ -95,18 +95,27 @@ const OrderSummary = ({ state, prints, setPrints }) => {
         const key = Object.keys(product)[0];
         const object = product[key];
         const sizes = [];
-        Object.keys(object).forEach((element) => {
-          if (element.includes("x") && object[element] > 0) {
-            sizes.push(element);
-          }
-        });
+        // Object.keys(object).forEach((element) => {
+        //   if (element.includes("x") && object[element]?.qty > 0) {
+        //     console.log(object)
+        sizes.push(object);
+        //   }
+        // });
         sizes.map((size) => {
-          printCharges = printCharges + sizePrice[size] * object[size];
-          totalPrints = totalPrints + object[size];
+          const key = Object.keys(size);
+          key.map((indSize) => {
+            if (indSize.includes("x") && object[indSize]?.qty > 0) {
+              printCharges =
+                printCharges +
+                sizePrice[indSize] * Number(object[indSize]?.qty);
+              totalPrints = totalPrints + Number(object[indSize]?.qty);
+            }
+          });
         });
       });
-      coatingCharges = coatingFee * totalPrints;
-      finishCharges =  finishFee * totalPrints;
+    coatingCharges = coatingFee * totalPrints;
+    finishCharges = finishFee * totalPrints;
+    console.log(shippingCharges, finishCharges, coatingCharges, printCharges);
     setTotal(shippingCharges + finishCharges + coatingCharges + printCharges);
     setCharges({
       shippingCharges,
@@ -174,9 +183,10 @@ const OrderSummary = ({ state, prints, setPrints }) => {
                 const key = Object.keys(product)[0];
                 const object = product[key];
                 const sizes = [];
+                console.log(object.image)
                 Object.keys(object).forEach((element) => {
                   if (element.includes("x")) {
-                    sizes.push(element);
+                    sizes.push({ [element]: { qty: object[element].qty } });
                   }
                 });
                 return (
@@ -184,7 +194,7 @@ const OrderSummary = ({ state, prints, setPrints }) => {
                     <div className="col-span-2 md:col-span-3 flex items-center">
                       <div className="h-20 flex md:ml-2 items-center rounded-lg overflow-hidden">
                         <img
-                          className="w-10 md:w-4/5"
+                          className="w-10 md:w-4/5 max-w-[100px]"
                           src={object.image}
                           alt=""
                         />
@@ -196,54 +206,69 @@ const OrderSummary = ({ state, prints, setPrints }) => {
                               index !== 0 ? "mt-1 md:mt-0" : ""
                             } text-xs md:text-base text-[#2A2A28] font-bold`}
                           >
-                            {size.replace("size", "")} Prints
+                            {Object.keys(size)[0].replace("size", "")} Prints
                           </p>
                         ))}
                       </div>
                     </div>
                     <div>
-                      {sizes.map((size, ind) => (
-                        <div
-                          className={`${
-                            ind !== 0 ? "mt-1 md:mt-0" : ""
-                          } select-none  flex items-center justify-center md:pr-10`}
-                        >
+                      {sizes.map((size, ind) => {
+                        const key = Object.keys(size)[0];
+                        const value = Number(
+                          prints[index][`product${index}`][key].qty
+                        );
+                        const minValue =
+                          prints[index][`product${index}`][key].min;
+                        return (
                           <div
-                            onClick={() => {
-                              if (object[size] > 1) {
-                                updatePrint(index, size, object[size] - 1);
-                              }
-                            }}
-                            className="w-5 h-5 bg-[#09BAA6] cursor-pointer rounded flex justify-center items-center"
+                            className={`${
+                              ind !== 0 ? "mt-1 md:mt-0" : ""
+                            } select-none  flex items-center justify-center md:pr-10`}
                           >
-                            <img
-                              className="w-3/5 sm:w-auto "
-                              src={RemoveIcon}
-                              alt=""
-                            />
-                          </div>
+                            <div
+                              onClick={() => {
+                                if (value > 0 && value > minValue) {
+                                  updatePrint(index, key, {
+                                    qty: value - 1,
+                                    min: minValue,
+                                  });
+                                }
+                              }}
+                              className="w-5 h-5 bg-[#09BAA6] cursor-pointer rounded flex justify-center items-center"
+                            >
+                              <img
+                                className="w-3/5 sm:w-auto "
+                                src={RemoveIcon}
+                                alt=""
+                              />
+                            </div>
 
-                          <h1 className="text-[#6B6E76] text-xs md:text-base px-2">
-                            {object[size]}
-                          </h1>
+                            <h1 className="text-[#6B6E76] text-xs md:text-base px-2">
+                              {value}
+                            </h1>
 
-                          <div
-                            onClick={() => {
-                              updatePrint(index, size, object[size] + 1);
-                            }}
-                            className="w-5 h-5 bg-[#09BAA6] cursor-pointer rounded flex justify-center items-center"
-                          >
-                            <img
-                              className="w-3/5 sm:w-auto "
-                              src={AddIcon}
-                              alt=""
-                            />
+                            <div
+                              onClick={() => {
+                                updatePrint(index, key, {
+                                  qty: value + 1,
+                                  min: minValue,
+                                });
+                              }}
+                              className="w-5 h-5 bg-[#09BAA6] cursor-pointer rounded flex justify-center items-center"
+                            >
+                              <img
+                                className="w-3/5 sm:w-auto "
+                                src={AddIcon}
+                                alt=""
+                              />
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                     <div>
                       {sizes.map((size, ind) => {
+                        const key = Object.keys(size)[0];
                         return (
                           <div
                             className={`${
@@ -251,7 +276,7 @@ const OrderSummary = ({ state, prints, setPrints }) => {
                             }  select-none  flex items-center justify-end`}
                           >
                             <p className="text-center text-xs md:text-base text-[#6B6E76]">
-                              ${sizePrice[size] * object[size]}
+                              ${sizePrice[key] * object[key].qty}
                             </p>
                             <div
                               // onClick={() => {

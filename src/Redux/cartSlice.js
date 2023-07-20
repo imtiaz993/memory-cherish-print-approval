@@ -2,18 +2,20 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const cartSlice = createSlice({
   name: "cart",
-  initialState: { value: {
-    cart:{},
-    product:{
-      finish: "Matte Finish",
-      protectiveCoating: true,
-      frames: true,
-      shippingTime: "normal",
-
+  initialState: {
+    value: {
+      cart: {},
+      product: {
+        finish: "Matte Finish",
+        protectiveCoating: true,
+        frames: true,
+        shippingTime: "normal",
+      },
+      prints: [],
+      order: {},
+      fetchedInfo: [],
     },
-    prints:[],
-    order:{}
-  } },
+  },
   reducers: {
     updateCart: (state, action) => {
       state.value.cart = { ...action.payload };
@@ -22,14 +24,23 @@ export const cartSlice = createSlice({
       state.value.product = { ...action.payload };
     },
     updatePrints: (state, action) => {
-      state.value.prints = [...action.payload ];
+      state.value.prints = [...action.payload];
     },
     updateOrder: (state, action) => {
       state.value.order = { ...action.payload };
     },
+    updateFetchedInfo: (state, action) => {
+      state.value.fetchedInfo = [ ...action.payload ];
+    },
   },
 });
 
-export const { updateCart, updateProduct, updatePrints, updateOrder } = cartSlice.actions;
+export const {
+  updateCart,
+  updateProduct,
+  updatePrints,
+  updateOrder,
+  updateFetchedInfo,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
