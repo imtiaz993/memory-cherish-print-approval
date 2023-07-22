@@ -8,7 +8,12 @@ import CVVIcon from "../../../Assets/icons/cvv.png";
 import Country from "./Country";
 import { cards } from "../../../Data/utils";
 
-const PaymentDetails = ({ paymentDetails, setPaymentDetails }) => {
+const PaymentDetails = ({
+  paymentDetails,
+  setPaymentDetails,
+  state,
+  totalPrice,
+}) => {
   const [payWith, setPayWith] = useState("card");
   const [isNewCard, setIsNewCard] = useState(false);
   const [selectedCard, setSelectedCard] = useState({
@@ -18,6 +23,27 @@ const PaymentDetails = ({ paymentDetails, setPaymentDetails }) => {
     cardIcon: null,
   });
 
+  const sendWebhookData = () => {
+    fetch("https://hook.us1.make.com/2fiwxy7jhk62cbkti359a337ae2perqo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(state),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Webhook response:", data);
+      })
+      .catch((error) => {
+        console.error("Error sending data to the webhook:", error);
+      });
+  };
 
   return (
     <div className="mt-4 rounded-xl lg:rounded-2xl shadow-mobile-card bg-white py-1.5 lg:py-2 px-2 lg:px-3">
@@ -47,7 +73,10 @@ const PaymentDetails = ({ paymentDetails, setPaymentDetails }) => {
                 placeholder="Jonah Rathmer"
                 type="text"
                 onChange={(e) => {
-                  setPaymentDetails({ ...paymentDetails, fullname: e.target.value });
+                  setPaymentDetails({
+                    ...paymentDetails,
+                    fullname: e.target.value,
+                  });
                 }}
                 value={paymentDetails.fullname}
               />
@@ -56,7 +85,10 @@ const PaymentDetails = ({ paymentDetails, setPaymentDetails }) => {
               <p className="text-base lg:text-xl font-semibold text-black mb-2">
                 Country
               </p>
-              <Country paymentDetails={paymentDetails} setPaymentDetails={setPaymentDetails} />
+              <Country
+                paymentDetails={paymentDetails}
+                setPaymentDetails={setPaymentDetails}
+              />
             </div>
             <div className="mt-4 lg:mt-6">
               <p className="text-base lg:text-xl font-semibold text-black mb-2">
@@ -67,7 +99,10 @@ const PaymentDetails = ({ paymentDetails, setPaymentDetails }) => {
                 placeholder="1964 Quiet Valley Lane"
                 type="text"
                 onChange={(e) => {
-                  setPaymentDetails({ ...paymentDetails, address: e.target.value });
+                  setPaymentDetails({
+                    ...paymentDetails,
+                    address: e.target.value,
+                  });
                 }}
                 value={paymentDetails.address}
               />
@@ -117,7 +152,7 @@ const PaymentDetails = ({ paymentDetails, setPaymentDetails }) => {
                           <input
                             onClick={() => {
                               setSelectedCard(item);
-                              setIsNewCard(false)
+                              setIsNewCard(false);
                             }}
                             checked={item.number === selectedCard.number}
                             type="radio"
@@ -174,7 +209,10 @@ const PaymentDetails = ({ paymentDetails, setPaymentDetails }) => {
                           placeholder="1234 5678 5487 7544"
                           type="number"
                           onChange={(e) => {
-                            setPaymentDetails({ ...paymentDetails, card: e.target.value });
+                            setPaymentDetails({
+                              ...paymentDetails,
+                              card: e.target.value,
+                            });
                           }}
                           value={paymentDetails.card}
                         />
@@ -191,7 +229,10 @@ const PaymentDetails = ({ paymentDetails, setPaymentDetails }) => {
                           placeholder="MM/YY"
                           type="text"
                           onChange={(e) => {
-                            setPaymentDetails({ ...paymentDetails, expiry: e.target.value });
+                            setPaymentDetails({
+                              ...paymentDetails,
+                              expiry: e.target.value,
+                            });
                           }}
                           value={paymentDetails.expiry}
                         />
@@ -206,7 +247,10 @@ const PaymentDetails = ({ paymentDetails, setPaymentDetails }) => {
                             placeholder="CVV"
                             type="number"
                             onChange={(e) => {
-                              setPaymentDetails({ ...paymentDetails, cvv: e.target.value });
+                              setPaymentDetails({
+                                ...paymentDetails,
+                                cvv: e.target.value,
+                              });
                             }}
                             value={paymentDetails.cvv}
                           />
@@ -220,10 +264,12 @@ const PaymentDetails = ({ paymentDetails, setPaymentDetails }) => {
             )}
             <div className="md:w-1/2 mx-auto mt-6">
               <button
-                onClick={() => {}}
+                onClick={() => {
+                  sendWebhookData();
+                }}
                 className="bg-[#FF9728] w-full rounded-full text-xl text-white font-semibold py-3 lg:py-4 px-6 shadow-mobile-card"
               >
-                Pay $481.92
+                Pay ${totalPrice}
               </button>
             </div>
           </div>

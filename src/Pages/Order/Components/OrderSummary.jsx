@@ -7,7 +7,7 @@ import { updatePrints } from "../../../Redux/cartSlice";
 import { useDispatch } from "react-redux";
 import { fee, coatingFee, finishFee, sizePrice } from "../../../Data/utils";
 
-const OrderSummary = ({ state, prints, setPrints }) => {
+const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
   const dispatch = useDispatch();
   const [total, setTotal] = useState(0);
   const [products, setProducts] = useState();
@@ -117,6 +117,9 @@ const OrderSummary = ({ state, prints, setPrints }) => {
     finishCharges = finishFee * totalPrints;
     console.log(shippingCharges, finishCharges, coatingCharges, printCharges);
     setTotal(shippingCharges + finishCharges + coatingCharges + printCharges);
+    setTotalPrice(
+      shippingCharges + finishCharges + coatingCharges + printCharges
+    );
     setCharges({
       shippingCharges,
       finishCharges,
@@ -183,7 +186,7 @@ const OrderSummary = ({ state, prints, setPrints }) => {
                 const key = Object.keys(product)[0];
                 const object = product[key];
                 const sizes = [];
-                console.log(object.image)
+                console.log(object.image);
                 Object.keys(object).forEach((element) => {
                   if (element.includes("x")) {
                     sizes.push({ [element]: { qty: object[element].qty } });
