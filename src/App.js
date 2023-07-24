@@ -8,7 +8,9 @@ function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <Routes />
+        <div className="mx-auto" style={{maxWidth:"1680px"}}>
+          <Routes />
+        </div>
       </PersistGate>
     </Provider>
   );
