@@ -70,7 +70,6 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
 
   const getTotal = (newProducts) => {
     let shippingCharges = 0;
-    let finishCharges = 0;
     let coatingCharges = 0;
     let printCharges = 0;
     let totalPrints = 0;
@@ -114,15 +113,13 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
         });
       });
     coatingCharges = coatingFee * totalPrints;
-    finishCharges = finishFee * totalPrints;
-    console.log(shippingCharges, finishCharges, coatingCharges, printCharges);
-    setTotal(shippingCharges + finishCharges + coatingCharges + printCharges);
+    console.log(shippingCharges, coatingCharges, printCharges);
+    setTotal(shippingCharges  + coatingCharges + printCharges);
     setTotalPrice(
-      shippingCharges + finishCharges + coatingCharges + printCharges
+      shippingCharges  + coatingCharges + printCharges
     );
     setCharges({
       shippingCharges,
-      finishCharges,
       coatingCharges,
       printCharges,
       totalPrints,
@@ -272,6 +269,8 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
                     <div>
                       {sizes.map((size, ind) => {
                         const key = Object.keys(size)[0];
+                        const minValue =
+                        prints[index][`product${index}`][key].min;
                         return (
                           <div
                             className={`${
@@ -282,13 +281,12 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
                               ${sizePrice[key] * object[key].qty}
                             </p>
                             <div
-                              // onClick={() => {
-                              //   updatePrint(
-                              //     index,
-                              //     size,
-                              //     object[size] - object[size]
-                              //   );
-                              // }}
+                             onClick={() => {
+                              updatePrint(index, key, {
+                                qty: minValue,
+                                min: minValue,
+                              });
+                            }}
                               className="ml-2 md:ml-8 bg-[#FF9728] cursor-pointer w-5 h-5 rounded-full flex justify-center items-center"
                             >
                               <img src={CloseIcon} alt="" />
@@ -316,9 +314,8 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
               <p className="text-center pr-7 md:pr-16 text-xs md:text-base text-[#6B6E76]">
                 x{charges?.totalPrints}
               </p>
-              <p className="text-right pr-5 md:pr-9 text-xs md:text-base text-[#6B6E76]">
-                ${charges?.finishCharges}
-              </p>
+              {/* <p className="text-right pr-5 md:pr-9 text-xs md:text-base text-[#6B6E76]">
+              </p> */}
             </div>
             {state.product.protectiveCoating && (
               <div className="py-3 px-2 border-t border-[#DAD6CE] grid grid-cols-4 md:grid-cols-5 items-center pl-14 md:pl-[92px] pr-6">

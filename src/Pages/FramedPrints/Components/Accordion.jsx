@@ -3,6 +3,7 @@ import AccordionCollapse from "../../../Assets/icons/accordion-collapse.svg";
 import Frame from "../../../Assets/icons/frame.svg";
 
 const Accordion = ({ framedPrints, setFramedPrints }) => {
+  console.log(framedPrints);
   const [isOpenAccordion, setIsOpenAccordion] = useState([]);
   const [framed, setFramed] = useState([]);
 
@@ -38,9 +39,11 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
           ...framedPrints[index][`product${index}`],
           size: "8x10",
           color: "Black",
+          framed: true,
         },
       });
     });
+    setFramed(framedPrints.map((item, index) => index));
     setFramedPrints([...tempArray]);
   }, []);
 
@@ -434,12 +437,12 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
                       $35.57
                     </p>
                   </div>
-                  <button
+                  {/* <button
                     onClick={() => {}}
                     className="mt-3 mb-5 bg-[#1D222A] rounded-xl text-white font-medium py-1.5 md:py-2 px-3 md:px-4 text-sm md:text-base"
                   >
                     Save Frame Selection
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
