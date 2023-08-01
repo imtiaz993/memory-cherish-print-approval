@@ -80,14 +80,12 @@ const Shipping = ({ productDetails, setProductDetails }) => {
           </div>
         </div>
       </div>
+      <MorePhotos
+        productDetails={productDetails}
+        setProductDetails={setProductDetails}
+      />
       {productDetails.shippingTime === "most-urgent" && (
         <UrgentPolicy
-          productDetails={productDetails}
-          setProductDetails={setProductDetails}
-        />
-      )}
-      {productDetails.shippingTime === "normal" && (
-        <MorePhotos
           productDetails={productDetails}
           setProductDetails={setProductDetails}
         />

@@ -10,6 +10,7 @@ export const cartSlice = createSlice({
         protectiveCoating: true,
         frames: true,
         shippingTime: "normal",
+        morePhotos: false,
       },
       prints: [],
       order: {},

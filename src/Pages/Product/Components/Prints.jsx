@@ -98,7 +98,7 @@ const Prints = ({ prints, setPrints, fetchedInfo }) => {
           const sizeObject = item[key];
           return (
             <div
-              className={`md:border-b-2 md:border-[#C0BDB7] md:border-opacity-30 border-y md:border-y-0 md:border-l-0 border-l border-[#767676] ${
+              className={`md:border-b-2 pb-4 md:pb-0 md:border-[#C0BDB7] md:border-opacity-30 border-y md:border-y-0 md:border-l-0 border-l border-[#767676] ${
                 ind % 2 === 1 ? "bg-[#EFEFEF] bg-opacity-50" : "bg-white"
               } ${ind === sizes.length - 1 && "rounded-tr-xl border-r"}`}
             >
@@ -149,7 +149,7 @@ const Prints = ({ prints, setPrints, fetchedInfo }) => {
                 const minValue = prints[index][`product${index}`][key].min;
                 return (
                   <div
-                    className={` ${
+                    className={`relative ${
                       index === prints.length - 1 &&
                       ind === sizes.length - 1 &&
                       "rounded-br-xl overflow-hidden"
@@ -160,11 +160,19 @@ const Prints = ({ prints, setPrints, fetchedInfo }) => {
               
                 `}
                   >
+                    {minValue > 0 && (
+                      <p className="absolute -top-7 md:-top-5 left-1 md:left-2 text-[#000] font-bold text-center text-[8px] md:text-xs">
+                        Already paid for {minValue}
+                      </p>
+                    )}
                     <div className="flex items-center justify-between pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
                       <div
                         onClick={() => {
                           if (value > 0 && value > minValue) {
-                            updatePrints(index, key,{ qty: value - 1, min: minValue });
+                            updatePrints(index, key, {
+                              qty: value - 1,
+                              min: minValue,
+                            });
                           }
                         }}
                         className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center"
@@ -180,7 +188,10 @@ const Prints = ({ prints, setPrints, fetchedInfo }) => {
                       </h1>
                       <div
                         onClick={() => {
-                          updatePrints(index, key,{ qty: value + 1, min: minValue });
+                          updatePrints(index, key, {
+                            qty: value + 1,
+                            min: minValue,
+                          });
                         }}
                         className="w-4 sm:w-7 h-4 sm:h-7 bg-[#DAD6CE] cursor-pointer rounded flex justify-center items-center"
                       >

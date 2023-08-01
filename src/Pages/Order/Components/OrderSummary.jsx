@@ -5,7 +5,13 @@ import CloseIcon from "../../../Assets/icons/close.svg";
 import AccordionIcon from "../../../Assets/icons/order-accordion.svg";
 import { updatePrints } from "../../../Redux/cartSlice";
 import { useDispatch } from "react-redux";
-import { fee, coatingFee, finishFee, sizePrice } from "../../../Data/utils";
+import {
+  fee,
+  coatingFee,
+  finishFee,
+  sizePrice,
+  frameNewPrice,
+} from "../../../Data/utils";
 
 const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
   const dispatch = useDispatch();
@@ -73,6 +79,8 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
     let coatingCharges = 0;
     let printCharges = 0;
     let totalPrints = 0;
+    let frameCharges = 0;
+    let alreadyPaid = 0;
     switch (state.product.shippingTime) {
       case "most-urgent":
         shippingCharges = Number(fee.mostUrgent);
@@ -94,6 +102,9 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
         const key = Object.keys(product)[0];
         const object = product[key];
         const sizes = [];
+        console.log(object);
+        if (object.framed) {
+        }
         // Object.keys(object).forEach((element) => {
         //   if (element.includes("x") && object[element]?.qty > 0) {
         //     console.log(object)
@@ -108,21 +119,34 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
                 printCharges +
                 sizePrice[indSize] * Number(object[indSize]?.qty);
               totalPrints = totalPrints + Number(object[indSize]?.qty);
+              if (object[indSize]?.min > 0) {
+                alreadyPaid =
+                  alreadyPaid +
+                  sizePrice[indSize] * Number(object[indSize]?.min);
+              }
             }
           });
         });
+        if (object.framed) {
+          frameCharges = frameNewPrice * totalPrints;
+        }
       });
+    printCharges = printCharges - alreadyPaid;
     coatingCharges = coatingFee * totalPrints;
+    console.log(alreadyPaid);
+
     console.log(shippingCharges, coatingCharges, printCharges);
-    setTotal(shippingCharges  + coatingCharges + printCharges);
+    setTotal(shippingCharges + coatingCharges + printCharges + frameCharges);
     setTotalPrice(
-      shippingCharges  + coatingCharges + printCharges
+      shippingCharges + coatingCharges + printCharges + frameCharges
     );
     setCharges({
       shippingCharges,
       coatingCharges,
       printCharges,
       totalPrints,
+      frameCharges,
+      alreadyPaid,
     });
   };
 
@@ -270,7 +294,7 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
                       {sizes.map((size, ind) => {
                         const key = Object.keys(size)[0];
                         const minValue =
-                        prints[index][`product${index}`][key].min;
+                          prints[index][`product${index}`][key].min;
                         return (
                           <div
                             className={`${
@@ -281,12 +305,12 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
                               ${sizePrice[key] * object[key].qty}
                             </p>
                             <div
-                             onClick={() => {
-                              updatePrint(index, key, {
-                                qty: minValue,
-                                min: minValue,
-                              });
-                            }}
+                              onClick={() => {
+                                updatePrint(index, key, {
+                                  qty: minValue,
+                                  min: minValue,
+                                });
+                              }}
                               className="ml-2 md:ml-8 bg-[#FF9728] cursor-pointer w-5 h-5 rounded-full flex justify-center items-center"
                             >
                               <img src={CloseIcon} alt="" />
@@ -333,6 +357,31 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
                 </p>
               </div>
             )}
+            {charges?.frameCharges > 0 && (
+              <div className="py-3 px-2 border-t border-[#DAD6CE] grid grid-cols-4 md:grid-cols-5 items-center pl-14 md:pl-[92px] pr-6">
+                <p className="col-span-2 md:col-span-3 text-xs md:text-base text-[#2A2A28] font-semibold">
+                  Frames Fee (All Photos):
+                </p>
+                <p className="text-center pr-7 md:pr-16 text-xs md:text-base text-[#6B6E76]">
+                  x{charges?.totalPrints}
+                </p>
+                <p className="text-right pr-5 md:pr-9 text-xs md:text-base text-[#6B6E76]">
+                  ${charges?.frameCharges.toFixed(2)}
+                </p>
+              </div>
+            )}
+          </div>
+          <div className="flex justify-between mb-4 w-11/12 mx-auto">
+            <p className="text-lg lg:text-xl text-[#323640]">Gross</p>
+            <p className="text-lg lg:text-xl text-[#F7780F]">
+              ${total + charges.alreadyPaid}
+            </p>
+          </div>
+          <div className="flex justify-between mb-4 w-11/12 mx-auto">
+            <p className="text-lg lg:text-xl text-[#323640]">Already Paid</p>
+            <p className="text-lg lg:text-xl text-[#F7780F]">
+              ${charges.alreadyPaid}
+            </p>
           </div>
           <div className="flex justify-between mb-4 w-11/12 mx-auto">
             <p className="text-lg lg:text-xl text-[#323640]">Total</p>

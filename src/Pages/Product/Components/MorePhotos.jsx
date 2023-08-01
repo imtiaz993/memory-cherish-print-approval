@@ -3,7 +3,7 @@ import React from "react";
 const MorePhotos = ({ productDetails, setProductDetails }) => {
   return (
     <div>
-      <p className="mt-10 lg:mt-20 text-lg lg:text-xl font-bold">
+      <p className="mt-10 lg:mt-16 text-lg lg:text-xl font-bold">
       Do you have more photos to send to us in the future? 
       </p>
       <div className="mt-4">

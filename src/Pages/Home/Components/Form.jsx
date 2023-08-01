@@ -19,7 +19,8 @@ const Form = ({ data }) => {
       setDeliveryDetails({
         firstname: data.firstName,
         lastname: data.lastName,
-        shippingAddress: data.address,
+        addressLine1: data.address,
+        addressLine2: "",
         phoneCode: data.phone,
         phoneNumber: data.phone.slice(2),
         state:data.state,
@@ -69,17 +70,31 @@ const Form = ({ data }) => {
             </div>
           </div>
           <div className="mb-5">
-            <p className="text-base text-black mb-2">Shipping Adress</p>
+            <p className="text-base text-black mb-2">Address Line 1</p>
             <textarea
               className="w-full h-20 lg:h-[50px] rounded-xl border border-[#767676] py-3 px-5 outline-none resize-none"
               placeholder="15205 North Kierland Blvd. Suite 100. Scottsdale."
               onChange={(e) => {
                 setDeliveryDetails({
                   ...deliveryDetails,
-                  shippingAddress: e.target.value,
+                  addressLine1: e.target.value,
                 });
               }}
-              value={deliveryDetails.shippingAddress}
+              value={deliveryDetails.addressLine1}
+            />
+          </div>
+          <div className="mb-5">
+            <p className="text-base text-black mb-2">Adress Line 2</p>
+            <textarea
+              className="w-full h-20 lg:h-[50px] rounded-xl border border-[#767676] py-3 px-5 outline-none resize-none"
+              placeholder="15205 North Kierland Blvd. Suite 100. Scottsdale."
+              onChange={(e) => {
+                setDeliveryDetails({
+                  ...deliveryDetails,
+                  addressLine2: e.target.value,
+                });
+              }}
+              value={deliveryDetails.addressLine2}
             />
           </div>
           <div className="grid lg:grid-cols-2 gap-5 lg:gap-8 mb-5">

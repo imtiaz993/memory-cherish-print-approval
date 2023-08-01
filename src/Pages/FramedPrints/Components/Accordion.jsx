@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AccordionCollapse from "../../../Assets/icons/accordion-collapse.svg";
-import Frame from "../../../Assets/icons/frame.svg";
+import { frameNewPrice, frameOldPrice } from "../../../Data/utils";
 
 const Accordion = ({ framedPrints, setFramedPrints }) => {
   console.log(framedPrints);
@@ -59,32 +59,25 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
     let dimention = "";
     switch (framedPrints[index]["product" + index].size) {
       case "8x10":
-        dimention =
-          "w-[72px] md:w-[144px] h-[86px]  md:h-[172px] border-[10px] md:border-[20px]";
+        dimention = " w-[144px]  h-[172px]";
         break;
       case "11x14":
-        dimention =
-          "w-[88px] md:w-[176px] h-[115px]  md:h-[230px] border-[12px] md:border-[24px]";
+        dimention = "w-[176px] h-[230px]";
         break;
       case "12x12":
-        dimention =
-          "w-[88px] md:w-[176px] h-[106px]  md:h-[212px] border-[12px] md:border-[24px]";
+        dimention = "w-[176px] h-[212px]";
         break;
       case "16x16":
-        dimention =
-          "w-[128px] md:w-[256px] h-[128px]  md:h-[256px] border-[14px] md:border-[28px]";
+        dimention = "w-[256px] h-[256px]";
         break;
       case "16x20":
-        dimention =
-          "w-[128px] md:w-[256px] h-[160px]  md:h-[320px] border-[14px] md:border-[28px]";
+        dimention = "w-[256px] h-[320px]";
         break;
       case "20x30":
-        dimention =
-          "w-[160px] md:w-[320px] h-[200px]  md:h-[400px] border-[16px] md:border-[32px]";
+        dimention = "w-[320px] h-[400px]";
         break;
       case "24x36":
-        dimention =
-          "w-[192  px] md:w-[384px] h-[240px] md:h-[480px] border-[18px] md:border-[36px]";
+        dimention = "w-[384px] h-[480px]";
         break;
 
       default:
@@ -97,19 +90,13 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
     let color = "";
     switch (framedPrints[index]["product" + index].color) {
       case "Black":
-        color = "border-[#000000]";
+        color = "blackFrame";
         break;
       case "White":
-        color = "border-[#FFFFFF]";
-        break;
-      case "Brown":
-        color = "border-[#964B00]";
+        color = "whiteFrame";
         break;
       case "Natural":
-        color = "border-[#B48F8F]";
-        break;
-      case "Matte Gold":
-        color = "border-[#D4B44A]";
+        color = "goldFrame";
         break;
 
       default:
@@ -191,22 +178,24 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
                     : "h-0 transition-all duration-150"
                 }`}
               >
-                <div className="w-full flex justify-center pb-8 lg:pb-16 border-b-[3px] border-[#FF9728]">
-                  <div
-                    className={`rounded-[5px] shadow-mobile-card ${getFrameDimentions(
-                      index
-                    )} ${getFrameColor(index)} mt-8`}
-                  >
-                    <div className="w-full h-full">
-                      <img
-                        className="object-fill w-full h-full"
-                        src={object.image}
-                        alt=""
-                      />
+                <div className="w-full relative pt-4 pb-4 border-b-[3px] border-[#FF9728] ">
+                  <div className="wall">
+                    <div
+                      className={`absolute left-[42%] top-[10%] rounded-[5px] border-[20px] ${getFrameDimentions(
+                        index
+                      )} ${getFrameColor(index)}`}
+                    >
+                      <div className="w-full h-full ">
+                        <img
+                          className="object-fill w-full h-full"
+                          src={object.image}
+                          alt=""
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className="mt-5 lg:mt-10">
+                <div className="mt-5 lg:mt-6">
                   <div className="flex justify-between items-baseline mb-6 lg:mb-10">
                     <h1 className="whitespace-nowrap text-sm lg:text-2xl text-[#2A2A28]">
                       Size
@@ -377,22 +366,6 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
                       </div>
                       <div
                         onClick={() => {
-                          updateFramed(index, "color", "Brown");
-                        }}
-                        className="flex flex-col items-center mr-3 md:mr-7 cursor-pointer"
-                      >
-                        <div
-                          className={`w-5 md:w-8 h-5 md:h-8 ${
-                            framedPrints[index]["product" + index].color ===
-                            "Brown"
-                              ? "border-2 border-[#FF9728]"
-                              : "border border-[#767676]"
-                          } bg-[#964B00]`}
-                        ></div>
-                        <p className="text-[10px] md:text-xs mt-1">Brown</p>
-                      </div>
-                      <div
-                        onClick={() => {
                           updateFramed(index, "color", "Natural");
                         }}
                         className="flex flex-col items-center mr-3 md:mr-7 cursor-pointer"
@@ -403,27 +376,9 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
                             "Natural"
                               ? "border-2 border-[#FF9728]"
                               : "border border-[#767676]"
-                          } bg-[#B48F8F]`}
-                        ></div>
-                        <p className="text-[10px] md:text-xs mt-1">Natural</p>
-                      </div>
-                      <div
-                        onClick={() => {
-                          updateFramed(index, "color", "Matte Gold");
-                        }}
-                        className="flex flex-col items-center cursor-pointer"
-                      >
-                        <div
-                          className={`w-5 md:w-8 h-5 md:h-8 ${
-                            framedPrints[index]["product" + index].color ===
-                            "Matte Gold"
-                              ? "border-2 border-[#FF9728]"
-                              : "border border-[#767676]"
                           } bg-[#D4B44A]`}
                         ></div>
-                        <p className="whitespace-nowrap text-[10px] md:text-xs mt-1">
-                          Matte Gold
-                        </p>
+                        <p className="text-[10px] md:text-xs mt-1">Natural</p>
                       </div>
                     </div>
                   </div>
@@ -431,10 +386,10 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
                 <div className="flex flex-col items-center">
                   <div className="flex">
                     <p className="text-[#767676] font-bold line-through text-sm md:text-base">
-                      $45.57
+                      ${frameOldPrice}
                     </p>
                     <p className="text-[#09C5B0] font-bold ml-2 text-sm md:text-base">
-                      $35.57
+                      ${frameNewPrice}
                     </p>
                   </div>
                   {/* <button

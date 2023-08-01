@@ -1,9 +1,3 @@
-import Product1 from "../Assets/images/product1.png";
-import Product2 from "../Assets/images/product2.png";
-import Product3 from "../Assets/images/product3.png";
-import Product4 from "../Assets/images/product4.png";
-import Product1Framed from "../Assets/images/product1Framed.png";
-import Product2Framed from "../Assets/images/product2Framed.png";
 import VisaIcon from "../Assets/icons/visa.png";
 import MasterCardIcon from "../Assets/icons/mastercard.png";
 
@@ -15,7 +9,9 @@ export const fee = {
   };
 
  export const coatingFee = 9;
- export const finishFee = 9;
+ export const frameOldPrice=45.57;
+ export const frameNewPrice=35.57;
+
  export  const sizePrice = {
     size4x6: 10,
     size5x7: 15,
@@ -24,28 +20,6 @@ export const fee = {
     size16x20: 49,
   };
 
-export const products = [
-    {
-      img: Product1,
-      id: "1",
-      framedImage:Product1Framed
-    },
-    {
-      img: Product2,
-      id: "2",
-      framedImage:Product2Framed
-    },
-    {
-      img: Product3,
-      id: "3",
-      framedImage:Product1Framed
-    },
-    {
-      img: Product4,
-      id: "4",
-      framedImage:Product2Framed
-    },
-  ];
 
   export const sizes = [
     {
