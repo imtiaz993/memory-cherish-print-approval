@@ -37,7 +37,7 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
       tempArray.push({
         [`product${index}`]: {
           ...framedPrints[index][`product${index}`],
-          size: "8x10",
+          size: "5x7",
           color: "Black",
           framed: true,
         },
@@ -58,26 +58,23 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
   const getFrameDimentions = (index) => {
     let dimention = "";
     switch (framedPrints[index]["product" + index].size) {
-      case "8x10":
-        dimention = " w-[144px]  h-[172px]";
+      case "5x7":
+        dimention = " w-[100px]  h-[140px]";
         break;
-      case "11x14":
-        dimention = "w-[176px] h-[230px]";
+      case "8x10":
+        dimention = "w-[120px] h-[150px]";
         break;
       case "12x12":
-        dimention = "w-[176px] h-[212px]";
+        dimention = "w-[144px] h-[144px]";
         break;
-      case "16x16":
-        dimention = "w-[256px] h-[256px]";
+      case "11x14":
+        dimention = "w-[132px] h-[168px]";
         break;
       case "16x20":
-        dimention = "w-[256px] h-[320px]";
+        dimention = "w-[160px] h-[200px]";
         break;
       case "20x30":
-        dimention = "w-[320px] h-[400px]";
-        break;
-      case "24x36":
-        dimention = "w-[384px] h-[480px]";
+        dimention = "w-[180px] h-[270px]";
         break;
 
       default:
@@ -181,7 +178,7 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
                 <div className="w-full relative pt-4 pb-4 border-b-[3px] border-[#FF9728] ">
                   <div className="wall">
                     <div
-                      className={`absolute left-[42%] top-[10%] rounded-[5px] border-[20px] ${getFrameDimentions(
+                      className={`absolute right-[5%] sm:right-[15%] md:right-[20%] 2xl:right-[25%] top-[16%] sm:top-[10%] rounded-[5px] border-[20px] ${getFrameDimentions(
                         index
                       )} ${getFrameColor(index)}`}
                     >
@@ -204,9 +201,27 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
                       <div>
                         <div
                           onClick={() => {
-                            updateFramed(index, "size", "8x10");
+                            updateFramed(index, "size", "5x7");
                           }}
                           className={`w-[11px] md:w-[18px] h-[12px] md:h-[20px] border  ${
+                            framedPrints[index]["product" + index].size ===
+                            "5x7"
+                              ? "border-[#FF9728]"
+                              : "border-[#767676]"
+                          }`}
+                        ></div>
+                        <p className="text-[10px] md:text-xs text-[#2A2A28]">
+                        5x7
+                        </p>
+                      </div>
+                      <div
+                        onClick={() => {
+                          updateFramed(index, "size", "8x10");
+                        }}
+                        className="flex flex-col items-center ml-3 md:ml-4 cursor-pointer"
+                      >
+                        <div
+                          className={`w-[11px] md:w-[17px] h-[16px] md:h-[26px] border  ${
                             framedPrints[index]["product" + index].size ===
                             "8x10"
                               ? "border-[#FF9728]"
@@ -214,25 +229,7 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
                           }`}
                         ></div>
                         <p className="text-[10px] md:text-xs text-[#2A2A28]">
-                          8x10
-                        </p>
-                      </div>
-                      <div
-                        onClick={() => {
-                          updateFramed(index, "size", "11x14");
-                        }}
-                        className="flex flex-col items-center ml-3 md:ml-4 cursor-pointer"
-                      >
-                        <div
-                          className={`w-[11px] md:w-[17px] h-[16px] md:h-[26px] border  ${
-                            framedPrints[index]["product" + index].size ===
-                            "11x14"
-                              ? "border-[#FF9728]"
-                              : "border-[#767676]"
-                          }`}
-                        ></div>
-                        <p className="text-[10px] md:text-xs text-[#2A2A28]">
-                          11x14
+                        8x10
                         </p>
                       </div>
                       <div
@@ -255,20 +252,20 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
                       </div>
                       <div
                         onClick={() => {
-                          updateFramed(index, "size", "16x16");
+                          updateFramed(index, "size", "11x14");
                         }}
                         className="flex flex-col items-center ml-3 md:ml-4 cursor-pointer"
                       >
                         <div
                           className={`w-[20px] md:w-[33px] h-[20px] md:h-[33px] border  ${
                             framedPrints[index]["product" + index].size ===
-                            "16x16"
+                            "11x14"
                               ? "border-[#FF9728]"
                               : "border-[#767676]"
                           }`}
                         ></div>
                         <p className="text-[10px] md:text-xs text-[#2A2A28]">
-                          16x16
+                          11x14
                         </p>
                       </div>
                       <div
@@ -305,24 +302,6 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
                         ></div>
                         <p className="text-[10px] md:text-xs text-[#2A2A28]">
                           20x30
-                        </p>
-                      </div>
-                      <div
-                        onClick={() => {
-                          updateFramed(index, "size", "24x36");
-                        }}
-                        className="flex flex-col items-center ml-3 md:ml-4 cursor-pointer"
-                      >
-                        <div
-                          className={`w-[20px] md:w-[31px] h-[31px] md:h-[47px] border  ${
-                            framedPrints[index]["product" + index].size ===
-                            "24x36"
-                              ? "border-[#FF9728]"
-                              : "border-[#767676]"
-                          }`}
-                        ></div>
-                        <p className="text-[10px] md:text-xs text-[#2A2A28]">
-                          24x36
                         </p>
                       </div>
                     </div>

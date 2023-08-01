@@ -374,13 +374,13 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
           <div className="flex justify-between mb-4 w-11/12 mx-auto">
             <p className="text-lg lg:text-xl text-[#323640]">Gross</p>
             <p className="text-lg lg:text-xl text-[#F7780F]">
-              ${total + charges.alreadyPaid}
+              ${total + charges?.alreadyPaid}
             </p>
           </div>
           <div className="flex justify-between mb-4 w-11/12 mx-auto">
             <p className="text-lg lg:text-xl text-[#323640]">Already Paid</p>
             <p className="text-lg lg:text-xl text-[#F7780F]">
-              ${charges.alreadyPaid}
+              ${charges?.alreadyPaid}
             </p>
           </div>
           <div className="flex justify-between mb-4 w-11/12 mx-auto">

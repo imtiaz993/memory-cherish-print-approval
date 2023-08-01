@@ -98,6 +98,55 @@ const Form = ({ data }) => {
             />
           </div>
           <div className="grid lg:grid-cols-2 gap-5 lg:gap-8 mb-5">
+           
+            <div className="">
+              <p className="text-base text-black mb-2">State/Province</p>
+              <input
+                className="w-full rounded-xl border border-[#767676] py-3 px-5 outline-none"
+                placeholder="California"
+                type="text"
+                onChange={(e) => {
+                  setDeliveryDetails({
+                    ...deliveryDetails,
+                    state: e.target.value,
+                  });
+                }}
+                value={deliveryDetails.state}
+              />
+            </div>
+            <div>
+              <p className="text-base text-black mb-2">City</p>
+              <input
+                className="w-full rounded-xl border border-[#767676] py-3 px-5 outline-none"
+                placeholder="Los Angeles"
+                type="text"
+                onChange={(e) => {
+                  setDeliveryDetails({
+                    ...deliveryDetails,
+                    city: e.target.value,
+                  });
+                }}
+                value={deliveryDetails.city}
+              />
+            </div>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-5 lg:gap-8 mb-5">
+           
+            <div>
+              <p className="text-base text-black mb-2">ZIP/Postal Code</p>
+              <input
+                className="w-full rounded-xl border border-[#767676] py-3 px-5 outline-none"
+                placeholder="90213"
+                type="number"
+                onChange={(e) => {
+                  setDeliveryDetails({
+                    ...deliveryDetails,
+                    zip: e.target.value,
+                  });
+                }}
+                value={deliveryDetails.zip}
+              />
+            </div>
             <div>
               <p className="text-base text-black mb-2">Phone Number</p>
               <div className="w-full relative home-phone">
@@ -119,55 +168,9 @@ const Form = ({ data }) => {
                 />
               </div>
             </div>
-            <div className="mt-12 lg:mt-1">
-              <p className="text-base text-black mb-2">State/Province</p>
-              <input
-                className="w-full rounded-xl border border-[#767676] py-3 px-5 outline-none"
-                placeholder="California"
-                type="text"
-                onChange={(e) => {
-                  setDeliveryDetails({
-                    ...deliveryDetails,
-                    state: e.target.value,
-                  });
-                }}
-                value={deliveryDetails.state}
-              />
-            </div>
+           
           </div>
-          <div className="grid lg:grid-cols-2 gap-5 lg:gap-8 mb-5">
-            <div>
-              <p className="text-base text-black mb-2">City</p>
-              <input
-                className="w-full rounded-xl border border-[#767676] py-3 px-5 outline-none"
-                placeholder="Los Angeles"
-                type="text"
-                onChange={(e) => {
-                  setDeliveryDetails({
-                    ...deliveryDetails,
-                    city: e.target.value,
-                  });
-                }}
-                value={deliveryDetails.city}
-              />
-            </div>
-            <div>
-              <p className="text-base text-black mb-2">ZIP/Postal Code</p>
-              <input
-                className="w-full rounded-xl border border-[#767676] py-3 px-5 outline-none"
-                placeholder="90213"
-                type="number"
-                onChange={(e) => {
-                  setDeliveryDetails({
-                    ...deliveryDetails,
-                    zip: e.target.value,
-                  });
-                }}
-                value={deliveryDetails.zip}
-              />
-            </div>
-          </div>
-          <div className="flex justify-center mt-10">
+          <div className="flex justify-center mt-20">
             <button
               className="bg-[#FF9728] rounded-xl text-xl text-white font-semibold py-2 lg:py-3 px-6"
               type="submit"
