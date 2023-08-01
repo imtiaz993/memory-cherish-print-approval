@@ -184,7 +184,7 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
                     >
                       <div className="w-full h-full ">
                         <img
-                          className="object-fill w-full h-full"
+                          className="object-cover w-full h-full"
                           src={object.image}
                           alt=""
                         />
