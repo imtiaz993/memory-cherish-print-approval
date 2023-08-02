@@ -74,7 +74,7 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
         dimention = "w-[160px] h-[200px]";
         break;
       case "20x30":
-        dimention = "w-[180px] h-[270px]";
+        dimention = "w-[180px] h-[220px]";
         break;
 
       default:
@@ -178,7 +178,7 @@ const Accordion = ({ framedPrints, setFramedPrints }) => {
                 <div className="w-full relative pt-4 pb-4 border-b-[3px] border-[#FF9728] ">
                   <div className="wall">
                     <div
-                      className={`absolute right-[5%] sm:right-[15%] md:right-[20%] 2xl:right-[25%] top-[16%] sm:top-[10%] rounded-[5px] border-[20px] ${getFrameDimentions(
+                      className={`absolute right-[5%] sm:right-[15%] md:right-[20%] 2xl:right-[25%] top-[25%] sm:top-[14%] rounded-[5px] border-[20px] ${getFrameDimentions(
                         index
                       )} ${getFrameColor(index)}`}
                     >
