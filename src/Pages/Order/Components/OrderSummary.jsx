@@ -81,6 +81,7 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
     let totalPrints = 0;
     let frameCharges = 0;
     let alreadyPaid = 0;
+    let walletFee = 0;
     switch (state.product.shippingTime) {
       case "most-urgent":
         shippingCharges = Number(fee.mostUrgent);
@@ -101,6 +102,9 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
       newProducts.map((product, index) => {
         const key = Object.keys(product)[0];
         const object = product[key];
+        if (object.isWallet && !state.fetchedInfo.isWalletSize) {
+          walletFee += 14;
+        }
         const sizes = [];
         console.log(object);
         if (object.framed) {
@@ -136,11 +140,14 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
     console.log(alreadyPaid);
 
     console.log(shippingCharges, coatingCharges, printCharges);
-    setTotal(shippingCharges + coatingCharges + printCharges + frameCharges);
+    setTotal(
+      shippingCharges + coatingCharges + printCharges + frameCharges + walletFee
+    );
     setTotalPrice(
-      shippingCharges + coatingCharges + printCharges + frameCharges
+      shippingCharges + coatingCharges + printCharges + frameCharges + walletFee
     );
     setCharges({
+      walletFee,
       shippingCharges,
       coatingCharges,
       printCharges,
@@ -370,6 +377,19 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
                 </p>
               </div>
             )}
+            {charges?.walletFee > 0 && (
+              <div className="py-3 px-2 border-t border-[#DAD6CE] grid grid-cols-4 md:grid-cols-5 items-center pl-14 md:pl-[92px] pr-6">
+                <p className="col-span-2 md:col-span-3 text-xs md:text-base text-[#2A2A28] font-semibold">
+                  Wallet Size Print Fee:
+                </p>
+                <p className="text-center pr-7 md:pr-16 text-xs md:text-base text-[#6B6E76]">
+                  x{products.length}
+                </p>
+                <p className="text-right pr-5 md:pr-9 text-xs md:text-base text-[#6B6E76]">
+                  ${charges?.walletFee}
+                </p>
+              </div>
+            )}
           </div>
           <div className="flex justify-between mb-4 w-11/12 mx-auto">
             <p className="text-lg lg:text-xl text-[#323640]">Gross</p>
@@ -378,7 +398,7 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
             </p>
           </div>
           <div className="flex justify-between mb-4 w-11/12 mx-auto">
-            <p className="text-lg lg:text-xl text-[#323640]">Already Paid</p>
+            <p className="text-lg lg:text-xl text-[#323640]">Already Paid For Prints</p>
             <p className="text-lg lg:text-xl text-[#F7780F]">
               ${charges?.alreadyPaid}
             </p>

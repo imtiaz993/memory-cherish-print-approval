@@ -8,6 +8,8 @@ export const fee = {
     mostUrgent: "0",
   };
 
+  export const walletSizePrize= 14;
+
  export const coatingFee = 9;
  export const frameOldPrice=45.57;
  export const frameNewPrice=35.57;

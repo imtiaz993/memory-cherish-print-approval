@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import RemoveIcon from "../../../Assets/icons/remove.svg";
 import AddIcon from "../../../Assets/icons/add.svg";
-import { products, sizes } from "../../../Data/utils";
+import { products, sizes, walletSizePrize } from "../../../Data/utils";
 
 const Prints = ({ prints, setPrints, fetchedInfo }) => {
   const updatePrints = (index, key, value) => {
@@ -27,27 +27,30 @@ const Prints = ({ prints, setPrints, fetchedInfo }) => {
 
   useEffect(() => {
     const tempArray = [];
-    fetchedInfo.map((item, index) => {
-      tempArray.push({
-        [`product${index}`]: {
-          size4x6: { qty: item.size["4x6"] || 0, min: item.size["4x6"] || 0 },
-          size5x7: { qty: item.size["5x7"] || 0, min: item.size["5x7"] || 0 },
-          size8x10: {
-            qty: item.size["8x10"] || 0,
-            min: item.size["8x10"] || 0,
+    fetchedInfo.prints &&
+      fetchedInfo.prints.length > 0 &&
+      fetchedInfo.prints.map((item, index) => {
+        tempArray.push({
+          [`product${index}`]: {
+            size4x6: { qty: item.size["4x6"] || 0, min: item.size["4x6"] || 0 },
+            size5x7: { qty: item.size["5x7"] || 0, min: item.size["5x7"] || 0 },
+            size8x10: {
+              qty: item.size["8x10"] || 0,
+              min: item.size["8x10"] || 0,
+            },
+            size11x14: {
+              qty: item.size["11x14"] || 0,
+              min: item.size["11x14"] || 0,
+            },
+            size16x20: {
+              qty: item.size["16x20"] || 0,
+              min: item.size["16x20"] || 0,
+            },
+            isWallet: fetchedInfo.isWalletSize,
+            image: item.urls[0],
           },
-          size11x14: {
-            qty: item.size["11x14"] || 0,
-            min: item.size["11x14"] || 0,
-          },
-          size16x20: {
-            qty: item.size["16x20"] || 0,
-            min: item.size["16x20"] || 0,
-          },
-          image: item.urls[0],
-        },
+        });
       });
-    });
     setPrints([...tempArray]);
   }, []);
 
@@ -87,7 +90,7 @@ const Prints = ({ prints, setPrints, fetchedInfo }) => {
           Select exactly how many you would like for each photo.
         </p>
       </div>
-      <div className="grid grid-cols-6">
+      <div className="grid grid-cols-7">
         <div className="bg-[#FFEBDD] rounded-tl-xl md:border-b-2 md:border-[#C0BDB7] md:border-opacity-30 border-y md:border-y-0 md:border-l-0 border-l border-[#767676]">
           <div className="">
             <div className=" h-20 flex ml-2 items-center"></div>
@@ -100,14 +103,14 @@ const Prints = ({ prints, setPrints, fetchedInfo }) => {
             <div
               className={`md:border-b-2 pb-4 md:pb-0 md:border-[#C0BDB7] md:border-opacity-30 border-y md:border-y-0 md:border-l-0 border-l border-[#767676] ${
                 ind % 2 === 1 ? "bg-[#EFEFEF] bg-opacity-50" : "bg-white"
-              } ${ind === sizes.length - 1 && "rounded-tr-xl border-r"}`}
+              } `}
             >
               <div className="">
                 <div className="flex flex-col justify-center pl-2 md:pl-3 pr-2 md:pr-4 h-20 pb-2">
-                  <h1 className="text-[#323640] text-xs md:text-lg font-semibold">
+                  <h1 className="text-[#323640] text-xs md:text-base font-semibold">
                     {sizeObject.size} Print
                   </h1>
-                  <p className="text-[#6B6E76] text-[10px] md:text-sm mt-1 md:mt-0">
+                  <p className="text-[#6B6E76] text-[10px] md:text-xs mt-1 md:mt-0">
                     ${sizeObject.price} per photo
                   </p>
                 </div>
@@ -115,6 +118,20 @@ const Prints = ({ prints, setPrints, fetchedInfo }) => {
             </div>
           );
         })}
+        <div
+          className={`md:border-b-2 pb-4 md:pb-0 md:border-[#C0BDB7] md:border-opacity-30 border-y md:border-y-0 md:border-l-0 border-l border-[#767676]  bg-[#EFEFEF] bg-opacity-50 rounded-tr-xl border-r`}
+        >
+          <div className="">
+            <div className="flex flex-col justify-center pl-2 md:pl-3 pr-2 md:pr-4 h-20 pb-2">
+              <h1 className="text-[#323640] text-xs leading-0 md:leading-normal md:text-sm font-semibold">
+                Wallet Size
+              </h1>
+              <p className="text-[#6B6E76] text-[8px] leading-1 md:leading-normal md:text-[11px] mt-1 md:mt-0">
+                ${walletSizePrize} per photo
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {prints.length > 0 &&
@@ -126,7 +143,7 @@ const Prints = ({ prints, setPrints, fetchedInfo }) => {
               className={`select-none  ${
                 index !== prints.length - 1 &&
                 "md:border-b-2 md:border-[#C0BDB7]"
-              } md:border-opacity-30  grid grid-cols-6`}
+              } md:border-opacity-30  grid grid-cols-7`}
             >
               <div
                 className={`${
@@ -149,19 +166,18 @@ const Prints = ({ prints, setPrints, fetchedInfo }) => {
                 const minValue = prints[index][`product${index}`][key].min;
                 return (
                   <div
-                    className={`relative ${
-                      index === prints.length - 1 &&
-                      ind === sizes.length - 1 &&
-                      "rounded-br-xl overflow-hidden"
-                    } md:border-l-0 border-b md:border-b-0 border-l  border-[#767676] ${
-                      ind % 2 === 1 ? "bg-[#EFEFEF] bg-opacity-50" : "bg-white"
-                    }
+                    className={`relative
+                       md:border-l-0 border-b md:border-b-0 border-l  border-[#767676] ${
+                         ind % 2 === 1
+                           ? "bg-[#EFEFEF] bg-opacity-50"
+                           : "bg-white"
+                       }
                 ${ind === sizes.length - 1 && "  border-r md:border-r-0"}
               
                 `}
                   >
                     {minValue > 0 && (
-                      <p className="absolute -top-7 md:-top-5 left-1 md:left-2 text-[#000] font-bold text-center text-[8px] md:text-xs">
+                      <p className="text-[#000] absolute leading-[10px] sm:left-2 md:left-5 font-bold text-center text-[8px] md:text-[10px]">
                         Already paid for {minValue}
                       </p>
                     )}
@@ -205,6 +221,28 @@ const Prints = ({ prints, setPrints, fetchedInfo }) => {
                   </div>
                 );
               })}
+              <div
+                className={` rounded-br-xl overflow-hidden
+                   md:border-l-0 border-b md:border-b-0 border-l  border-[#767676] bg-[#EFEFEF] bg-opacity-50 bg-white
+               border-r md:border-r-0
+              
+                `}
+              >
+                <div className="flex items-center justify-center pl-1 sm:pl-2 pr-1 sm:pr-4 h-20">
+                  <div className="w-4 sm:w-7 h-4 sm:h-7 cursor-pointer rounded flex justify-center items-center">
+                    <input
+                      onClick={() => {
+                        console.log(item.isWallet);
+                        if (!fetchedInfo.isWalletSize) {
+                          updatePrints(index, "isWallet", !product.isWallet);
+                        }
+                      }}
+                      checked={product.isWallet}
+                      type="radio"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           );
         })}

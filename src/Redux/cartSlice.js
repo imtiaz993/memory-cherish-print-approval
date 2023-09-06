@@ -31,7 +31,7 @@ export const cartSlice = createSlice({
       state.value.order = { ...action.payload };
     },
     updateFetchedInfo: (state, action) => {
-      state.value.fetchedInfo = [ ...action.payload ];
+      state.value.fetchedInfo = action.payload;
     },
   },
 });

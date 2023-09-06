@@ -39,7 +39,7 @@ const Home = () => {
         return res.json();
       })
       .then((response) => {
-        dispatch(updateFetchedInfo(response.data.prints));
+        dispatch(updateFetchedInfo(response.data));
       })
       .catch((error) => {
         console.error(error.message);
