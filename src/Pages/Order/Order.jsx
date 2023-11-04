@@ -10,6 +10,7 @@ const Order = () => {
   const state = useSelector((state) => state.value);
   const [paymentDetails, setPaymentDetails] = useState({});
   const [prints, setPrints] = useState([...state.prints]);
+  const [addons, setAddons] = useState([]);
   const [totalPrice, setTotalPrice] = useState();
   const handleSubmit = (e) => {
     dispatch(updatePrints(prints));
@@ -29,6 +30,8 @@ const Order = () => {
               prints={prints}
               setPrints={setPrints}
               setTotalPrice={setTotalPrice}
+              addons={addons}
+              setAddons={setAddons}
             />
             <PaymentDetails
               paymentDetails={paymentDetails}

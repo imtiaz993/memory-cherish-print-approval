@@ -13,7 +13,14 @@ import {
   frameNewPrice,
 } from "../../../Data/utils";
 
-const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
+const OrderSummary = ({
+  state,
+  prints,
+  setPrints,
+  setTotalPrice,
+  addons,
+  setAddons,
+}) => {
   const dispatch = useDispatch();
   const [total, setTotal] = useState(0);
   const [products, setProducts] = useState();
@@ -82,6 +89,7 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
     let frameCharges = 0;
     let alreadyPaid = 0;
     let walletFee = 0;
+    const extraPrints = [];
     switch (state.product.shippingTime) {
       case "most-urgent":
         shippingCharges = Number(fee.mostUrgent);
@@ -106,12 +114,10 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
           walletFee += 14;
         }
         const sizes = [];
-        console.log(object);
         if (object.framed) {
         }
         // Object.keys(object).forEach((element) => {
         //   if (element.includes("x") && object[element]?.qty > 0) {
-        //     console.log(object)
         sizes.push(object);
         //   }
         // });
@@ -128,6 +134,13 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
                   alreadyPaid +
                   sizePrice[indSize] * Number(object[indSize]?.min);
               }
+              if (object[indSize]?.qty > object[indSize]?.min) {
+                extraPrints.push( {
+                  size: indSize.replace('size',''),
+                  number_of_prints:
+                    object[indSize]?.qty - object[indSize]?.min,
+                })
+              }
             }
           });
         });
@@ -137,9 +150,8 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
       });
     printCharges = printCharges - alreadyPaid;
     coatingCharges = coatingFee * totalPrints;
-    console.log(alreadyPaid);
+   
 
-    console.log(shippingCharges, coatingCharges, printCharges);
     setTotal(
       shippingCharges + coatingCharges + printCharges + frameCharges + walletFee
     );
@@ -155,6 +167,7 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
       frameCharges,
       alreadyPaid,
     });
+    console.log(extraPrints)
   };
 
   useEffect(() => {
@@ -214,7 +227,6 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
                 const key = Object.keys(product)[0];
                 const object = product[key];
                 const sizes = [];
-                console.log(object.image);
                 Object.keys(object).forEach((element) => {
                   if (element.includes("x")) {
                     sizes.push({ [element]: { qty: object[element].qty } });
@@ -398,7 +410,9 @@ const OrderSummary = ({ state, prints, setPrints, setTotalPrice }) => {
             </p>
           </div>
           <div className="flex justify-between mb-4 w-11/12 mx-auto">
-            <p className="text-lg lg:text-xl text-[#323640]">Already Paid For Prints</p>
+            <p className="text-lg lg:text-xl text-[#323640]">
+              Already Paid For Prints
+            </p>
             <p className="text-lg lg:text-xl text-[#F7780F]">
               ${charges?.alreadyPaid}
             </p>
