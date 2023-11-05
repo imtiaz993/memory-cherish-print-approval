@@ -135,11 +135,11 @@ const OrderSummary = ({
                   sizePrice[indSize] * Number(object[indSize]?.min);
               }
               if (object[indSize]?.qty > object[indSize]?.min) {
-                extraPrints.push( {
-                  size: indSize.replace('size',''),
-                  number_of_prints:
-                    object[indSize]?.qty - object[indSize]?.min,
-                })
+                extraPrints.push({
+                  size: indSize.replace("size", ""),
+                  number_of_prints: object[indSize]?.qty - object[indSize]?.min,
+                  photo_number: index + 1,
+                });
               }
             }
           });
@@ -150,7 +150,6 @@ const OrderSummary = ({
       });
     printCharges = printCharges - alreadyPaid;
     coatingCharges = coatingFee * totalPrints;
-   
 
     setTotal(
       shippingCharges + coatingCharges + printCharges + frameCharges + walletFee
@@ -167,7 +166,7 @@ const OrderSummary = ({
       frameCharges,
       alreadyPaid,
     });
-    console.log(extraPrints)
+    console.log(extraPrints);
   };
 
   useEffect(() => {
